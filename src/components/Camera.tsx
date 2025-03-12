@@ -4,7 +4,6 @@ import CameraUI from './camera/CameraUI';
 import CameraPermissionDenied from './camera/CameraPermissionDenied';
 import { useCameraControls } from './camera/useCameraControls';
 import { CountdownOverlay, CameraStatusBar } from './camera/CameraUI';
-import { motion } from 'framer-motion';
 
 interface CameraProps {
   onCapture: (blob: Blob, type: 'photo' | 'video') => void;
@@ -29,7 +28,7 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
   }
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-black">
+    <div className="fixed inset-0 bg-black">
       <CameraStatusBar mode={mode} />
       
       <video 
