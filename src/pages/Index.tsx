@@ -3,117 +3,257 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import VerifiedBadge from '@/components/VerifiedBadge';
-import { Camera, Search, ChevronRight } from 'lucide-react';
+import { Camera, Search, CheckCircle, Shield, FileText, Scale } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import Footer from '@/components/Footer';
 
 const Index: React.FC = () => {
   const navigate = useNavigate();
 
+  const staggerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
   return (
-    <Layout>
-      <div className="min-h-screen flex flex-col">
+    <Layout hideNav={false}>
+      <div className="min-h-screen">
         {/* Hero Section */}
-        <motion.div 
-          className="p-6 pt-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="flex justify-center mb-4">
-            <VerifiedBadge size="lg" />
-          </div>
-          
-          <h1 className="text-4xl font-bold text-verified-dark mb-3">
-            Verified Vintage Capture
-          </h1>
-          
-          <p className="text-verified-dark/80 mb-8 max-w-md mx-auto">
-            Capture authentic photos and videos with a unique verification code that proves they're real.
-          </p>
-          
-          <div className="flex flex-col gap-3 max-w-xs mx-auto">
-            <button 
-              onClick={() => navigate('/capture')} 
-              className="btn-primary flex items-center justify-center gap-2"
-            >
-              <Camera size={20} />
-              <span>Capture Media</span>
-            </button>
+        <section className="pt-8 pb-12 px-4">
+          <motion.div 
+            className="text-center max-w-md mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex justify-center mb-4">
+              <VerifiedBadge size="lg" />
+            </div>
             
-            <button 
-              onClick={() => navigate('/verify')} 
-              className="btn-secondary flex items-center justify-center gap-2"
-            >
-              <Search size={20} />
-              <span>Verify Media</span>
-            </button>
-          </div>
-        </motion.div>
+            <h1 className="text-3xl font-bold text-verified-dark mb-3">
+              TrueCapture
+            </h1>
+            
+            <p className="text-verified-dark/80 mb-2 text-lg">
+              Authenticity in the digital age
+            </p>
+            
+            <p className="text-verified-dark/90 mb-6">
+              Verify the truth behind every capture
+            </p>
+            
+            <p className="text-verified-dark/80 mb-8 text-sm">
+              TrueCapture ensures authenticity in an era of digital manipulation. Capture photos and videos that are verifiably real with unique codes that can be validated anytime.
+            </p>
+            
+            <div className="flex flex-col gap-3 max-w-xs mx-auto">
+              <Button 
+                onClick={() => navigate('/capture')} 
+                className="bg-verified-green text-white hover:bg-verified-green/90 flex items-center justify-center gap-2 h-12"
+              >
+                <Camera size={20} />
+                <span>Start Capturing</span>
+              </Button>
+              
+              <Button 
+                onClick={() => navigate('/verify')} 
+                className="bg-verified-yellow text-verified-dark hover:bg-verified-yellow/90 flex items-center justify-center gap-2 h-12"
+              >
+                <Search size={20} />
+                <span>Verify Media</span>
+              </Button>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            className="text-center mt-8 px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+          >
+            <p className="text-verified-dark/70 text-xs italic">
+              Trusted by content creators and journalists worldwide
+            </p>
+          </motion.div>
+        </section>
         
-        {/* Features Section */}
-        <motion.div 
-          className="mt-12 p-6 pb-24"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-        >
-          <h2 className="text-2xl font-bold text-verified-dark mb-6 text-center">
-            How It Works
-          </h2>
-          
-          <div className="grid gap-4 max-w-md mx-auto">
-            <FeatureCard 
-              icon={<Camera className="h-6 w-6" />}
-              title="Capture"
-              description="Take photos or record videos directly through the app."
-              delay={0.1}
-            />
+        {/* How It Works Section */}
+        <section className="py-12 px-4 bg-white/50 backdrop-blur-sm">
+          <div className="max-w-md mx-auto">
+            <motion.div 
+              className="text-center mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-2xl font-bold text-verified-dark mb-2">
+                How TrueCapture Works
+              </h2>
+              <p className="text-verified-dark/80 text-sm">
+                Our technology ensures the authenticity of your media from capture to sharing
+              </p>
+            </motion.div>
             
-            <FeatureCard 
-              icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>}
-              title="Verify"
-              description="Each capture gets a unique verification code proving it's authentic."
-              delay={0.2}
-            />
-            
-            <FeatureCard 
-              icon={<Search className="h-6 w-6" />}
-              title="Validate"
-              description="Anyone can validate the authenticity of your media using the code."
-              delay={0.3}
-            />
+            <motion.div 
+              className="grid gap-6"
+              variants={staggerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-4 rounded-lg shadow-sm">
+                <div className="bg-verified-green/10 p-2 rounded-full">
+                  <Camera className="h-6 w-6 text-verified-green" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-verified-dark">Authentic Capture</h3>
+                  <p className="text-verified-dark/70 text-sm">Photos and videos are captured directly through our app, with tamper-proof verification built in.</p>
+                </div>
+              </motion.div>
+              
+              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-4 rounded-lg shadow-sm">
+                <div className="bg-verified-green/10 p-2 rounded-full">
+                  <Shield className="h-6 w-6 text-verified-green" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-verified-dark">Unique Verification</h3>
+                  <p className="text-verified-dark/70 text-sm">Each media file receives a unique verification code and timestamp stored in our secure database.</p>
+                </div>
+              </motion.div>
+              
+              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-4 rounded-lg shadow-sm">
+                <div className="bg-verified-green/10 p-2 rounded-full">
+                  <CheckCircle className="h-6 w-6 text-verified-green" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-verified-dark">Instant Validation</h3>
+                  <p className="text-verified-dark/70 text-sm">Anyone can verify the authenticity of media by searching the verification code on our platform.</p>
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
-        </motion.div>
+        </section>
+        
+        {/* Use Cases Section */}
+        <section className="py-12 px-4">
+          <div className="max-w-md mx-auto">
+            <motion.div 
+              className="text-center mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <h2 className="text-2xl font-bold text-verified-dark mb-2">
+                Trusted Verification For All
+              </h2>
+              <p className="text-verified-dark/80 text-sm">
+                TrueCapture helps maintain trust and authenticity across various industries
+              </p>
+            </motion.div>
+            
+            <div className="grid gap-6">
+              <UseCase 
+                icon={<FileText className="h-6 w-6 text-verified-green" />}
+                title="Journalism & News Media"
+                description="Verify the authenticity of breaking news images and videos to combat misinformation."
+                delay={0.1}
+              />
+              
+              <UseCase 
+                icon={<Camera className="h-6 w-6 text-verified-green" />}
+                title="Social Media Creators"
+                description="Build trust with your audience by verifying your content is authentic and unmodified."
+                delay={0.2}
+              />
+              
+              <UseCase 
+                icon={<Shield className="h-6 w-6 text-verified-green" />}
+                title="Insurance Documentation"
+                description="Provide verifiable evidence for insurance claims with authenticated photos and videos."
+                delay={0.3}
+              />
+              
+              <UseCase 
+                icon={<Scale className="h-6 w-6 text-verified-green" />}
+                title="Legal Evidence"
+                description="Capture and verify media that can be used as reliable evidence in legal proceedings."
+                delay={0.4}
+              />
+            </div>
+          </div>
+        </section>
+        
+        {/* CTA Section */}
+        <section className="py-12 px-4 bg-verified-green/10">
+          <div className="max-w-md mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-2xl font-bold text-verified-dark mb-4">
+                Ready to authenticate your captures?
+              </h2>
+              <p className="text-verified-dark/80 mb-8">
+                Start using TrueCapture today and ensure your media is verifiably authentic in a world full of digital manipulation.
+              </p>
+              <Button 
+                onClick={() => navigate('/capture')} 
+                className="bg-verified-green text-white hover:bg-verified-green/90 w-full max-w-xs h-12"
+              >
+                Start Your First Verified Capture
+              </Button>
+            </motion.div>
+          </div>
+        </section>
+        
+        <Footer />
       </div>
     </Layout>
   );
 };
 
-interface FeatureCardProps {
+interface UseCaseProps {
   icon: React.ReactNode;
   title: string;
   description: string;
   delay: number;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, delay }) => {
+const UseCase: React.FC<UseCaseProps> = ({ icon, title, description, delay }) => {
   return (
     <motion.div 
-      className="flex items-start p-4 bg-white/70 backdrop-blur-sm rounded-xl shadow-md"
+      className="bg-white/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-sm"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.5 }}
     >
-      <div className="rounded-full p-2 bg-verified-green/10 text-verified-green mr-4">
-        {icon}
-      </div>
-      <div>
-        <h3 className="font-bold text-verified-dark mb-1">{title}</h3>
+      <div className="p-4">
+        <div className="flex items-center gap-4 mb-3">
+          <div className="bg-verified-green/10 p-2 rounded-full">
+            {icon}
+          </div>
+          <h3 className="font-bold text-verified-dark">{title}</h3>
+        </div>
         <p className="text-verified-dark/70 text-sm">{description}</p>
       </div>
-      <ChevronRight className="ml-auto text-verified-green shrink-0" />
+      <div className="bg-verified-green/5 p-3 flex justify-center">
+        <VerifiedBadge size="sm" className="scale-75" />
+      </div>
     </motion.div>
   );
 };

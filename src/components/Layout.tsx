@@ -23,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ children, hideNav = false }) => {
       </main>
       
       {!hideNav && (
-        <nav className="fixed bottom-0 left-0 right-0 z-20 p-4">
+        <nav className="fixed bottom-0 left-0 right-0 z-20 p-4 mb-2">
           <div className="max-w-md mx-auto bg-white/80 backdrop-blur-md rounded-full shadow-lg p-2 px-3">
             <div className="flex justify-around items-center">
               <NavItem to="/" icon={<Home />} label="Home" isActive={location.pathname === '/'} />

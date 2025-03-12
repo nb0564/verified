@@ -9,7 +9,7 @@ import Capture from "./pages/Capture";
 import Preview from "./pages/Preview";
 import Verify from "./pages/Verify";
 import NotFound from "./pages/NotFound";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const queryClient = new QueryClient();
 
