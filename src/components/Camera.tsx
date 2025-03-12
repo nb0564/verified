@@ -1,7 +1,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Camera, Video, X, Aperture } from 'lucide-react';
+import { Camera as CameraIcon, Video, X, Aperture, FlipCamera } from 'lucide-react';
 import { toast } from 'sonner';
+import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 interface CameraProps {
   onCapture: (blob: Blob, type: 'photo' | 'video') => void;
@@ -19,13 +21,19 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
   const [countdown, setCountdown] = useState<number | null>(null);
   const [isActive, setIsActive] = useState(true);
   const [cameraPermission, setCameraPermission] = useState<boolean | null>(null);
+  const [facingMode, setFacingMode] = useState<'user' | 'environment'>('environment');
 
   useEffect(() => {
     const initCamera = async () => {
       try {
+        // Stop any existing stream
+        if (streamRef.current) {
+          streamRef.current.getTracks().forEach(track => track.stop());
+        }
+        
         const constraints = {
           video: {
-            facingMode: 'environment',
+            facingMode: facingMode,
             width: { ideal: 1920 },
             height: { ideal: 1080 }
           },
@@ -55,7 +63,7 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
         streamRef.current.getTracks().forEach(track => track.stop());
       }
     };
-  }, [isActive]);
+  }, [isActive, facingMode]);
 
   const takePhoto = () => {
     if (!videoRef.current || !streamRef.current) return;
@@ -151,6 +159,10 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
     onClose?.();
   };
 
+  const toggleCamera = () => {
+    setFacingMode(prev => prev === 'environment' ? 'user' : 'environment');
+  };
+
   if (cameraPermission === false) {
     return (
       <div className="flex flex-col items-center justify-center h-full p-6 text-center">
@@ -171,6 +183,14 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-black">
+      {/* iOS-style status bar */}
+      <div className="absolute top-0 left-0 right-0 z-30 h-12 flex items-center justify-between px-4 bg-black/30 backdrop-blur-sm">
+        <div className="text-white text-sm font-medium">TrueCapture</div>
+        <div className="text-white text-sm">
+          {mode === 'photo' ? 'Photo Mode' : 'Video Mode'}
+        </div>
+      </div>
+      
       {/* Camera Preview */}
       <video 
         ref={videoRef} 
@@ -182,64 +202,115 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
       
       {/* Countdown Overlay */}
       {countdown !== null && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-          <div className="text-6xl font-bold text-white animate-pulse">
-            {countdown}
-          </div>
-        </div>
+        <motion.div 
+          className="absolute inset-0 flex items-center justify-center bg-black/50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <motion.div 
+            className="w-24 h-24 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center"
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 1, repeat: Infinity }}
+          >
+            <div className="text-6xl font-bold text-white">
+              {countdown}
+            </div>
+          </motion.div>
+        </motion.div>
       )}
       
-      {/* Controls */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center">
-        <div className="flex gap-8 items-center mb-6">
+      {/* iOS-style Camera Controls */}
+      <div className="absolute bottom-0 left-0 right-0 px-4 pb-8 pt-12 bg-gradient-to-t from-black/70 to-transparent">
+        <div className="flex flex-col items-center">
           {/* Mode Selector */}
-          <button 
-            onClick={() => setMode('photo')}
-            className={`p-3 rounded-full ${mode === 'photo' ? 'bg-verified-green text-white' : 'bg-white/20 text-white'}`}
-          >
-            <Camera size={24} />
-          </button>
-          
-          {/* Capture Button */}
-          <button 
-            onClick={mode === 'photo' ? takePhoto : isRecording ? stopVideoRecording : startVideoRecording}
-            className={`flex items-center justify-center p-2 rounded-full
-              ${isRecording 
-                ? 'bg-red-500 w-16 h-16' 
-                : 'bg-white w-20 h-20'
-              }`}
-            disabled={countdown !== null}
-          >
-            <div className={`${isRecording ? 'w-8 h-8 rounded-sm bg-white' : 'rounded-full border-4 border-verified-dark w-full h-full flex items-center justify-center'}`}>
-              {!isRecording && mode === 'photo' && <Aperture size={30} className="text-verified-dark" />}
-            </div>
-          </button>
-          
-          {/* Mode Selector */}
-          <button 
-            onClick={() => setMode('video')}
-            className={`p-3 rounded-full ${mode === 'video' ? 'bg-verified-green text-white' : 'bg-white/20 text-white'}`}
-          >
-            <Video size={24} />
-          </button>
-        </div>
-        
-        {/* Recording Indicator */}
-        {isRecording && (
-          <div className="flex items-center bg-white/20 rounded-full px-4 py-1 text-white">
-            <div className="w-3 h-3 rounded-full bg-red-500 mr-2 animate-pulse"></div>
-            <span>Recording...</span>
+          <div className="flex justify-center gap-6 mb-6">
+            <button 
+              onClick={() => setMode('photo')}
+              className={cn(
+                "ios-btn px-4 py-2",
+                mode === 'photo' ? "bg-white/30 text-white" : "bg-white/10 text-white/60"
+              )}
+            >
+              <CameraIcon size={20} className="mr-2" />
+              <span>Photo</span>
+            </button>
+            
+            <button 
+              onClick={() => setMode('video')}
+              className={cn(
+                "ios-btn px-4 py-2",
+                mode === 'video' ? "bg-white/30 text-white" : "bg-white/10 text-white/60"
+              )}
+            >
+              <Video size={20} className="mr-2" />
+              <span>Video</span>
+            </button>
           </div>
-        )}
+          
+          {/* Capture Controls */}
+          <div className="flex items-center gap-8">
+            {/* Camera Flip Button */}
+            <motion.button
+              onClick={toggleCamera}
+              whileTap={{ scale: 0.9 }}
+              className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white"
+            >
+              <FlipCamera size={24} />
+            </motion.button>
+            
+            {/* Capture Button */}
+            <motion.button 
+              onClick={mode === 'photo' ? takePhoto : isRecording ? stopVideoRecording : startVideoRecording}
+              whileTap={{ scale: 0.95 }}
+              disabled={countdown !== null}
+              className={cn(
+                "flex items-center justify-center rounded-full border-4",
+                isRecording 
+                  ? "bg-red-500 border-white w-20 h-20" 
+                  : "bg-white/10 backdrop-blur-lg border-white/80 w-24 h-24"
+              )}
+            >
+              {isRecording ? (
+                <motion.div 
+                  className="w-12 h-12 rounded-sm bg-red-600"
+                  animate={{ scale: [1, 0.8, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                />
+              ) : (
+                <div className="rounded-full bg-white w-16 h-16 flex items-center justify-center">
+                  {mode === 'photo' ? (
+                    <Aperture size={30} className="text-verified-dark" />
+                  ) : (
+                    <Video size={30} className="text-verified-dark" />
+                  )}
+                </div>
+              )}
+            </motion.button>
+            
+            {/* Close Button */}
+            <motion.button 
+              onClick={handleClose}
+              whileTap={{ scale: 0.9 }}
+              className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white"
+            >
+              <X size={24} />
+            </motion.button>
+          </div>
+          
+          {/* Recording Indicator */}
+          {isRecording && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-6 flex items-center bg-white/20 backdrop-blur-md rounded-full px-4 py-2 text-white"
+            >
+              <div className="w-3 h-3 rounded-full bg-red-500 mr-2 animate-pulse"></div>
+              <span>Recording... Tap to stop</span>
+            </motion.div>
+          )}
+        </div>
       </div>
-      
-      {/* Close Button */}
-      <button 
-        onClick={handleClose}
-        className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white"
-      >
-        <X size={24} />
-      </button>
     </div>
   );
 };
