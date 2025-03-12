@@ -33,7 +33,7 @@ export const useCameraControls = ({ onCapture, onClose }: UseCameraControlsProps
             width: { ideal: 1920 },
             height: { ideal: 1080 }
           },
-          audio: true
+          audio: mode === 'video'
         };
         
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -59,7 +59,7 @@ export const useCameraControls = ({ onCapture, onClose }: UseCameraControlsProps
         streamRef.current.getTracks().forEach(track => track.stop());
       }
     };
-  }, [isActive, facingMode]);
+  }, [isActive, facingMode, mode]);
 
   const takePhoto = () => {
     if (!videoRef.current || !streamRef.current) return;
@@ -71,7 +71,9 @@ export const useCameraControls = ({ onCapture, onClose }: UseCameraControlsProps
       canvas.height = video!.videoHeight;
       
       const ctx = canvas.getContext('2d');
-      ctx?.drawImage(video!, 0, 0, canvas.width, canvas.height);
+      if (!ctx) return;
+      
+      ctx.drawImage(video!, 0, 0, canvas.width, canvas.height);
       
       canvas.toBlob((blob) => {
         if (blob) {
@@ -116,6 +118,7 @@ export const useCameraControls = ({ onCapture, onClose }: UseCameraControlsProps
       mediaRecorderRef.current?.start();
       setIsRecording(true);
       
+      // Auto-stop recording after 10 seconds
       setTimeout(() => {
         if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
           stopVideoRecording();
@@ -174,6 +177,7 @@ export const useCameraControls = ({ onCapture, onClose }: UseCameraControlsProps
     isRecording,
     countdown,
     cameraPermission,
+    facingMode,
     setMode,
     handleCaptureClick,
     toggleCamera,

@@ -36,11 +36,11 @@ const Capture: React.FC = () => {
 
   if (isProcessing) {
     return (
-      <div className="fixed inset-0 bg-black flex items-center justify-center p-6">
+      <div className="fixed inset-0 bg-black flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-black/80 backdrop-blur-md p-8 max-w-xs w-full text-center rounded-3xl"
+          className="bg-black/80 backdrop-blur-md p-8 rounded-3xl"
         >
           <div className="mb-6">
             <Loader2 className="h-12 w-12 text-white animate-spin mx-auto" />
@@ -55,7 +55,7 @@ const Capture: React.FC = () => {
   }
 
   return (
-    <div className="fixed inset-0 bg-black">
+    <div className="fixed inset-0">
       <Camera onCapture={handleCapture} onClose={() => navigate('/')} />
     </div>
   );
