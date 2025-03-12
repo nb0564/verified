@@ -1,6 +1,5 @@
-
 import React, { useState, useRef, useEffect } from 'react';
-import { Camera as CameraIcon, Video, X, Aperture, FlipCamera } from 'lucide-react';
+import { Camera as CameraIcon, Video, X, Aperture, RotateCcw } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -26,7 +25,6 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
   useEffect(() => {
     const initCamera = async () => {
       try {
-        // Stop any existing stream
         if (streamRef.current) {
           streamRef.current.getTracks().forEach(track => track.stop());
         }
@@ -96,7 +94,6 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
       mediaRecorderRef.current = new MediaRecorder(streamRef.current, options);
     } catch (e) {
       try {
-        // Fallback
         mediaRecorderRef.current = new MediaRecorder(streamRef.current);
       } catch (e) {
         toast.error('Video recording not supported on this browser');
@@ -117,12 +114,10 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
       toast.success('Video captured!');
     };
     
-    // Start recording with a 3 second countdown
     startCountdown(() => {
       mediaRecorderRef.current?.start();
       setIsRecording(true);
       
-      // For demo, limit recording to 10 seconds
       setTimeout(() => {
         if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
           stopVideoRecording();
@@ -183,7 +178,6 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-black">
-      {/* iOS-style status bar */}
       <div className="absolute top-0 left-0 right-0 z-30 h-12 flex items-center justify-between px-4 bg-black/30 backdrop-blur-sm">
         <div className="text-white text-sm font-medium">TrueCapture</div>
         <div className="text-white text-sm">
@@ -191,7 +185,6 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
         </div>
       </div>
       
-      {/* Camera Preview */}
       <video 
         ref={videoRef} 
         autoPlay 
@@ -200,7 +193,6 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
         className="h-full w-full object-cover"
       />
       
-      {/* Countdown Overlay */}
       {countdown !== null && (
         <motion.div 
           className="absolute inset-0 flex items-center justify-center bg-black/50"
@@ -220,10 +212,8 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
         </motion.div>
       )}
       
-      {/* iOS-style Camera Controls */}
       <div className="absolute bottom-0 left-0 right-0 px-4 pb-8 pt-12 bg-gradient-to-t from-black/70 to-transparent">
         <div className="flex flex-col items-center">
-          {/* Mode Selector */}
           <div className="flex justify-center gap-6 mb-6">
             <button 
               onClick={() => setMode('photo')}
@@ -248,18 +238,15 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
             </button>
           </div>
           
-          {/* Capture Controls */}
           <div className="flex items-center gap-8">
-            {/* Camera Flip Button */}
             <motion.button
               onClick={toggleCamera}
               whileTap={{ scale: 0.9 }}
               className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white"
             >
-              <FlipCamera size={24} />
+              <RotateCcw size={24} />
             </motion.button>
             
-            {/* Capture Button */}
             <motion.button 
               onClick={mode === 'photo' ? takePhoto : isRecording ? stopVideoRecording : startVideoRecording}
               whileTap={{ scale: 0.95 }}
@@ -288,7 +275,6 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
               )}
             </motion.button>
             
-            {/* Close Button */}
             <motion.button 
               onClick={handleClose}
               whileTap={{ scale: 0.9 }}
@@ -298,7 +284,6 @@ const CameraComponent: React.FC<CameraProps> = ({ onCapture, onClose }) => {
             </motion.button>
           </div>
           
-          {/* Recording Indicator */}
           {isRecording && (
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
