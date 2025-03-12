@@ -2,7 +2,7 @@
 import React from 'react';
 import { useCameraControls } from './camera/useCameraControls';
 import CameraPermissionDenied from './camera/CameraPermissionDenied';
-import { Switch, FlipCamera } from 'lucide-react';
+import { RotateCw, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CameraProps {
@@ -108,7 +108,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
             onClick={toggleCamera}
             className="w-12 h-12 rounded-full bg-black/40 flex items-center justify-center text-white border border-white/30"
           >
-            <Switch size={22} className="rotate-90" />
+            <RotateCw size={22} />
           </button>
           
           {/* Capture Button */}
@@ -134,7 +134,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
             onClick={handleClose}
             className="w-12 h-12 rounded-full bg-black/40 flex items-center justify-center text-white border border-white/30"
           >
-            <span className="text-lg">×</span>
+            <X size={22} />
           </button>
         </div>
         
