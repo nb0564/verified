@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -84,6 +83,43 @@
 
   .btn-secondary {
     @apply bg-verified-yellow text-verified-dark font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:brightness-105 active:scale-95;
+  }
+
+  /* iOS specific styles */
+  .ios-btn {
+    @apply relative overflow-hidden rounded-2xl bg-gradient-to-b from-white/90 to-white/70 
+           shadow-lg backdrop-blur-lg border border-white/20 
+           active:scale-95 transition-all duration-200;
+  }
+  
+  .ios-card {
+    @apply relative overflow-hidden rounded-2xl bg-white/80 
+           shadow-lg backdrop-blur-lg border border-white/20;
+  }
+  
+  .ios-input {
+    @apply bg-white/70 backdrop-blur-md rounded-xl border border-white/30 
+           px-4 py-3 focus:ring-2 focus:ring-verified-green/20 
+           focus:border-verified-green transition-all duration-200;
+  }
+  
+  /* Enhanced gradients */
+  .gradient-yellow {
+    @apply bg-gradient-to-br from-[#FFCF00] via-[#FFE29F] to-[#FFA99F];
+  }
+  
+  .gradient-green {
+    @apply bg-gradient-to-br from-[#00A550] via-[#00C467] to-[#00E37A];
+  }
+  
+  /* Glass effects */
+  .glass-morphism {
+    @apply backdrop-blur-xl bg-white/10 border border-white/20 
+           shadow-[0_4px_12px_-2px_rgba(0,0,0,0.1)];
+  }
+  
+  .neo-blur {
+    @apply backdrop-blur-2xl bg-white/40 border border-white/30;
   }
 
   /* Transitions */
