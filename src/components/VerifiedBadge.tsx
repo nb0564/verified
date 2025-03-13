@@ -27,8 +27,8 @@ const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
       sizeClasses[size], 
       className
     )}>
-      {/* Enhanced 90s style checkmark with pixelated border and bright blue accent */}
-      <div className="nineties-glow rounded-full p-2 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,0.4)] mb-1 border-2 border-[#0EA5E9]" style={{ imageRendering: 'pixelated' }}>
+      {/* 90s style checkmark with pure green accent */}
+      <div className="nineties-glow rounded-full p-2 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,0.4)] mb-1 border-2 border-verified-green" style={{ imageRendering: 'pixelated' }}>
         <CheckCircle2 
           className="text-verified-yellow drop-shadow-[0_0_3px_rgba(255,207,0,0.7)]" 
           size={size === 'lg' ? 32 : size === 'md' ? 24 : 20} 
@@ -43,8 +43,8 @@ const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
         </div>
       </div>
       
-      {/* Pixelated line with enhanced 90s styling */}
-      <div className="w-16 h-1 bg-[#0EA5E9] mb-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]" style={{ imageRendering: 'pixelated' }}></div>
+      {/* Pixelated line with enhanced 90s styling in pure green */}
+      <div className="w-16 h-1 bg-verified-green mb-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]" style={{ imageRendering: 'pixelated' }}></div>
       
       {size === 'lg' && (
         <div className="text-verified-yellow text-xs font-bold tracking-wider uppercase bg-verified-green/80 px-2 py-0.5 rounded-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]">
@@ -54,10 +54,10 @@ const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
       
       {/* 90s pixelated sparkle effects */}
       <div className="absolute -right-2 -top-2">
-        <Sparkles size={12} className="text-[#0EA5E9]/90 animate-pulse" />
+        <Sparkles size={12} className="text-verified-green/90 animate-pulse" />
       </div>
       <div className="absolute -left-2 -bottom-2">
-        <Sparkles size={12} className="text-[#0EA5E9]/90 animate-pulse" />
+        <Sparkles size={12} className="text-verified-green/90 animate-pulse" />
       </div>
     </div>
   );
@@ -65,28 +65,26 @@ const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
   if (animated) {
     return (
       <motion.div
-        initial={{ opacity: 0.8, scale: 0.9 }}
+        initial={{ opacity: 0.7 }}
         animate={{ 
-          opacity: [0.4, 1, 0.2, 0.8, 0.3],
-          scale: [0.9, 1.05, 0.8, 1.1, 0.9],
-          x: [-15, 5, -10, 20, -5, 10, -15],
-          y: [-10, 15, -5, -20, 10, -8, -10],
-          rotate: [-2, 5, -4, 2, -6, 3, -2],
+          opacity: [0.3, 1, 0.2, 0.9, 0.1, 0.7, 0.4, 1, 0.2],
+          scale: [0.97, 1.01, 0.99, 1.02, 0.98, 1, 0.97],
           filter: [
-            "blur(0px) brightness(1)",
-            "blur(1px) brightness(1.1)",
-            "blur(2px) brightness(0.9)",
-            "blur(0.5px) brightness(1.2)",
-            "blur(3px) brightness(0.8)",
-            "blur(0px) brightness(1)"
+            "blur(0px) brightness(1) contrast(1)",
+            "blur(2px) brightness(1.2) contrast(1.1)",
+            "blur(0px) brightness(0.9) contrast(1.3)",
+            "blur(1px) brightness(1.3) contrast(0.9)",
+            "blur(3px) brightness(0.8) contrast(1.2)",
+            "blur(0px) brightness(1.1) contrast(1)",
+            "blur(2px) brightness(1) contrast(1.2)",
+            "blur(0px) brightness(1) contrast(1)",
           ]
         }}
         transition={{ 
-          duration: 6, 
+          duration: 5, 
           repeat: Infinity,
           repeatType: "reverse",
           ease: "easeInOut",
-          times: [0, 0.2, 0.4, 0.6, 0.8, 1]
         }}
         className="filter drop-shadow-[0_0_8px_rgba(255,207,0,0.7)]"
         style={{ 
