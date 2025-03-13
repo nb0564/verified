@@ -25,25 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ children, hideNav = false }) => {
 
         {/* Phone Content */}
         <div className="relative w-full h-full overflow-hidden bg-verified-yellow">
-          {/* Instagram-style status bar with brand colors */}
-          <div className="h-14 bg-gradient-to-r from-verified-yellow to-verified-yellow/95 backdrop-blur-md fixed top-0 left-0 right-0 z-30 border-b border-verified-green/10 shadow-sm">
-            <div className="h-full flex items-center justify-between px-5">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-full bg-verified-green flex items-center justify-center text-white font-bold shadow-sm">
-                  TC
-                </div>
-                <span className="font-black text-verified-dark tracking-tight text-xl">TrueCapture</span>
-              </div>
-              <Link 
-                to="/capture"
-                className="bg-verified-green text-white px-4 py-1.5 rounded-full text-sm font-bold hover:bg-verified-green/90 transition-all duration-150 shadow-sm"
-              >
-                Capture
-              </Link>
-            </div>
-          </div>
-          
-          <main className="flex-1 relative z-10 pt-14 pb-20 overflow-y-auto h-full">
+          <main className="flex-1 relative z-10 pb-20 overflow-y-auto h-full">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -55,7 +37,7 @@ const Layout: React.FC<LayoutProps> = ({ children, hideNav = false }) => {
           </main>
           
           {/* Instagram-inspired bottom navigation */}
-          <nav className="absolute bottom-0 left-0 right-0 z-20 p-4 pb-6">
+          <nav className="absolute bottom-0 left-0 right-0 z-30 p-4 pb-6">
             <div className="neo-blur rounded-2xl border border-white/20 shadow-lg">
               <div className="flex justify-around items-center py-3 px-1">
                 <NavItem to="/" icon={<Home />} label="Home" isActive={location.pathname === '/'} />
