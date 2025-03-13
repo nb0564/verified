@@ -61,8 +61,13 @@
   .retro-text {
     letter-spacing: 0.1em;
     font-weight: 900;
-    -webkit-text-stroke: 1px white;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+    text-transform: uppercase;
+    color: #00A550;
+    text-shadow: 
+      3px 3px 0 rgba(0,0,0,0.1),
+      -1px -1px 0 rgba(255,255,255,0.4);
+    transform-style: preserve-3d;
+    position: relative;
   }
 
   /* Button styles */

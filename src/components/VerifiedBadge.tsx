@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BadgeCheck } from 'lucide-react';
+import { Check } from 'lucide-react';
 
 interface VerifiedBadgeProps {
   size?: 'sm' | 'md' | 'lg';
@@ -9,25 +9,31 @@ interface VerifiedBadgeProps {
 
 const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({ size = 'md', className = '' }) => {
   const sizeClasses = {
-    sm: 'w-10 h-10 text-xs',
-    md: 'w-16 h-16 text-base',
-    lg: 'w-24 h-24 text-xl',
+    sm: 'scale-50',
+    md: 'scale-75',
+    lg: 'scale-100',
   };
 
   return (
-    <div className={`relative ${className}`}>
-      {/* Badge with 90s aesthetic */}
-      <div className={`flex flex-col items-center justify-center ${sizeClasses[size]}`}>
-        <div className="bg-verified-green text-white font-black tracking-wider uppercase px-3 py-1 rounded-md border-2 border-white shadow-md">
-          <span className="retro-text">VERIFIED</span>
-        </div>
-        
-        {size !== 'sm' && (
-          <div className="mt-1 flex items-center justify-center">
-            <BadgeCheck className="w-5 h-5 text-verified-green" strokeWidth={3} />
-          </div>
-        )}
+    <div className={`flex flex-col items-center justify-center ${className} ${sizeClasses[size]}`}>
+      {/* Circle with checkmark similar to reference */}
+      <div className="bg-verified-green rounded-full w-16 h-16 flex items-center justify-center border-4 border-verified-green shadow-lg mb-3">
+        <Check className="text-verified-yellow w-10 h-10" strokeWidth={4} />
       </div>
+      
+      {/* Large blocky VERIFIED text */}
+      <div className="text-verified-green text-5xl font-black tracking-wide uppercase mb-3 retro-text">
+        VERIFIED
+      </div>
+      
+      {/* Horizontal line */}
+      <div className="w-24 h-1 bg-verified-green mb-3"></div>
+      
+      {size === 'lg' && (
+        <div className="text-verified-green text-lg font-bold tracking-wide uppercase">
+          PROVE YOUR AUTHENTICITY
+        </div>
+      )}
     </div>
   );
 };
