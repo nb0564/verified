@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Check } from 'lucide-react';
+import { BadgeCheck } from 'lucide-react';
 
 interface VerifiedBadgeProps {
   size?: 'sm' | 'md' | 'lg';
@@ -9,27 +9,25 @@ interface VerifiedBadgeProps {
 
 const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({ size = 'md', className = '' }) => {
   const sizeClasses = {
-    sm: 'w-10 h-10 text-sm',
+    sm: 'w-10 h-10 text-xs',
     md: 'w-16 h-16 text-base',
     lg: 'w-24 h-24 text-xl',
   };
 
   return (
     <div className={`relative ${className}`}>
-      {/* Badge circle */}
-      <div className={`flex items-center justify-center rounded-full bg-verified-green text-white animate-pulse-glow ${sizeClasses[size]}`}>
-        <Check className="w-1/2 h-1/2 stroke-[3]" />
-      </div>
-      
-      {/* Glow effect */}
-      <div className={`absolute top-0 left-0 rounded-full bg-verified-green opacity-20 blur-md ${sizeClasses[size]}`}></div>
-      
-      {/* Text below badge (only for md and lg sizes) */}
-      {size !== 'sm' && (
-        <div className="mt-1 text-center font-bold text-verified-green uppercase tracking-wide">
-          Verified
+      {/* Badge with 90s aesthetic */}
+      <div className={`flex flex-col items-center justify-center ${sizeClasses[size]}`}>
+        <div className="bg-verified-green text-white font-black tracking-wider uppercase px-3 py-1 rounded-md border-2 border-white shadow-md">
+          <span className="retro-text">VERIFIED</span>
         </div>
-      )}
+        
+        {size !== 'sm' && (
+          <div className="mt-1 flex items-center justify-center">
+            <BadgeCheck className="w-5 h-5 text-verified-green" strokeWidth={3} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

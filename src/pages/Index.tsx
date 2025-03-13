@@ -53,13 +53,18 @@ const Index: React.FC = () => {
               Authenticity in the digital age
             </p>
             
-            <p className="text-verified-dark/90 mb-6">
-              Verify the truth behind every capture
-            </p>
-            
-            <p className="text-verified-dark/80 mb-8 text-sm">
-              TrueCapture ensures authenticity in an era of digital manipulation. Capture photos and videos that are verifiably real with unique codes that can be validated anytime.
-            </p>
+            {/* App-appropriate feature tags replacing long paragraph */}
+            <div className="flex flex-wrap justify-center gap-2 mb-6">
+              <span className="bg-verified-green/20 text-verified-green px-3 py-1 rounded-full text-sm font-medium">
+                #TamperProof
+              </span>
+              <span className="bg-verified-green/20 text-verified-green px-3 py-1 rounded-full text-sm font-medium">
+                #VerifiableMedia
+              </span>
+              <span className="bg-verified-green/20 text-verified-green px-3 py-1 rounded-full text-sm font-medium">
+                #TrustChain
+              </span>
+            </div>
             
             <div className="flex flex-col gap-3 max-w-xs mx-auto">
               <Button 
@@ -92,130 +97,117 @@ const Index: React.FC = () => {
           </motion.div>
         </section>
         
-        {/* How It Works Section */}
-        <section className="py-12 px-4 bg-white/50 backdrop-blur-sm">
+        {/* How It Works Section - more app-focused content */}
+        <section className="py-10 px-4 bg-white/50 backdrop-blur-sm">
           <div className="max-w-md mx-auto">
             <motion.div 
-              className="text-center mb-8"
+              className="text-center mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-2xl font-bold text-verified-dark mb-2">
-                How TrueCapture Works
+                How It Works
               </h2>
-              <p className="text-verified-dark/80 text-sm">
-                Our technology ensures the authenticity of your media from capture to sharing
-              </p>
             </motion.div>
             
             <motion.div 
-              className="grid gap-6"
+              className="grid gap-4"
               variants={staggerVariants}
               initial="hidden"
               animate="visible"
             >
-              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-4 rounded-lg shadow-sm">
+              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-3 rounded-lg shadow-sm">
                 <div className="bg-verified-green/10 p-2 rounded-full">
-                  <Camera className="h-6 w-6 text-verified-green" />
+                  <Camera className="h-5 w-5 text-verified-green" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-verified-dark">Authentic Capture</h3>
-                  <p className="text-verified-dark/70 text-sm">Photos and videos are captured directly through our app, with tamper-proof verification built in.</p>
+                  <h3 className="font-bold text-verified-dark text-sm">Capture</h3>
+                  <p className="text-verified-dark/70 text-xs">Take photos and videos directly through the app</p>
                 </div>
               </motion.div>
               
-              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-4 rounded-lg shadow-sm">
+              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-3 rounded-lg shadow-sm">
                 <div className="bg-verified-green/10 p-2 rounded-full">
-                  <Shield className="h-6 w-6 text-verified-green" />
+                  <Shield className="h-5 w-5 text-verified-green" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-verified-dark">Unique Verification</h3>
-                  <p className="text-verified-dark/70 text-sm">Each media file receives a unique verification code and timestamp stored in our secure database.</p>
+                  <h3 className="font-bold text-verified-dark text-sm">Secure</h3>
+                  <p className="text-verified-dark/70 text-xs">Each file receives a unique verification code</p>
                 </div>
               </motion.div>
               
-              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-4 rounded-lg shadow-sm">
+              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-3 rounded-lg shadow-sm">
                 <div className="bg-verified-green/10 p-2 rounded-full">
-                  <CheckCircle className="h-6 w-6 text-verified-green" />
+                  <CheckCircle className="h-5 w-5 text-verified-green" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-verified-dark">Instant Validation</h3>
-                  <p className="text-verified-dark/70 text-sm">Anyone can verify the authenticity of media by searching the verification code on our platform.</p>
+                  <h3 className="font-bold text-verified-dark text-sm">Verify</h3>
+                  <p className="text-verified-dark/70 text-xs">Validate authenticity with a simple search</p>
                 </div>
               </motion.div>
             </motion.div>
           </div>
         </section>
         
-        {/* Use Cases Section */}
-        <section className="py-12 px-4">
+        {/* Use Cases Section - more compact and app-like */}
+        <section className="py-10 px-4">
           <div className="max-w-md mx-auto">
             <motion.div 
-              className="text-center mb-8"
+              className="text-center mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <h2 className="text-2xl font-bold text-verified-dark mb-2">
-                Trusted Verification For All
+                Perfect For
               </h2>
-              <p className="text-verified-dark/80 text-sm">
-                TrueCapture helps maintain trust and authenticity across various industries
-              </p>
             </motion.div>
             
-            <div className="grid gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <UseCase 
-                icon={<FileText className="h-6 w-6 text-verified-green" />}
-                title="Journalism & News Media"
-                description="Verify the authenticity of breaking news images and videos to combat misinformation."
+                icon={<FileText className="h-5 w-5 text-verified-green" />}
+                title="Journalism"
                 delay={0.1}
               />
               
               <UseCase 
-                icon={<Camera className="h-6 w-6 text-verified-green" />}
-                title="Social Media Creators"
-                description="Build trust with your audience by verifying your content is authentic and unmodified."
+                icon={<Camera className="h-5 w-5 text-verified-green" />}
+                title="Creators"
                 delay={0.2}
               />
               
               <UseCase 
-                icon={<Shield className="h-6 w-6 text-verified-green" />}
-                title="Insurance Documentation"
-                description="Provide verifiable evidence for insurance claims with authenticated photos and videos."
+                icon={<Shield className="h-5 w-5 text-verified-green" />}
+                title="Insurance"
                 delay={0.3}
               />
               
               <UseCase 
-                icon={<Scale className="h-6 w-6 text-verified-green" />}
-                title="Legal Evidence"
-                description="Capture and verify media that can be used as reliable evidence in legal proceedings."
+                icon={<Scale className="h-5 w-5 text-verified-green" />}
+                title="Legal"
                 delay={0.4}
               />
             </div>
           </div>
         </section>
         
-        {/* CTA Section */}
-        <section className="py-12 px-4 bg-verified-green/10">
+        {/* Compact CTA Section */}
+        <section className="py-8 px-4 bg-verified-green/10">
           <div className="max-w-md mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl font-bold text-verified-dark mb-4">
-                Ready to authenticate your captures?
+              <h2 className="text-xl font-bold text-verified-dark mb-4">
+                Ready to start?
               </h2>
-              <p className="text-verified-dark/80 mb-8">
-                Start using TrueCapture today and ensure your media is verifiably authentic in a world full of digital manipulation.
-              </p>
               <Button 
                 onClick={() => navigate('/capture')} 
                 className="bg-verified-green text-white hover:bg-verified-green/90 w-full max-w-xs h-12"
               >
-                Start Your First Verified Capture
+                Capture Verified Media
               </Button>
             </motion.div>
           </div>
@@ -230,11 +222,10 @@ const Index: React.FC = () => {
 interface UseCaseProps {
   icon: React.ReactNode;
   title: string;
-  description: string;
   delay: number;
 }
 
-const UseCase: React.FC<UseCaseProps> = ({ icon, title, description, delay }) => {
+const UseCase: React.FC<UseCaseProps> = ({ icon, title, delay }) => {
   return (
     <motion.div 
       className="bg-white/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-sm"
@@ -242,17 +233,11 @@ const UseCase: React.FC<UseCaseProps> = ({ icon, title, description, delay }) =>
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.5 }}
     >
-      <div className="p-4">
-        <div className="flex items-center gap-4 mb-3">
-          <div className="bg-verified-green/10 p-2 rounded-full">
-            {icon}
-          </div>
-          <h3 className="font-bold text-verified-dark">{title}</h3>
+      <div className="p-3 text-center">
+        <div className="bg-verified-green/10 p-2 rounded-full w-10 h-10 flex items-center justify-center mx-auto mb-2">
+          {icon}
         </div>
-        <p className="text-verified-dark/70 text-sm">{description}</p>
-      </div>
-      <div className="bg-verified-green/5 p-3 flex justify-center">
-        <VerifiedBadge size="sm" className="scale-75" />
+        <h3 className="font-bold text-verified-dark text-sm">{title}</h3>
       </div>
     </motion.div>
   );

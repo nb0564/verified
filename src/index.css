@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -76,6 +77,14 @@
     z-index: 100;
   }
 
+  /* 90s style text for VERIFIED badge */
+  .retro-text {
+    letter-spacing: 0.1em;
+    font-weight: 900;
+    -webkit-text-stroke: 1px white;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+  }
+
   /* Button styles */
   .btn-primary {
     @apply bg-verified-green text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:brightness-110 active:scale-95;
@@ -145,3 +154,4 @@
     transition: opacity 300ms, transform 300ms;
   }
 }
+
