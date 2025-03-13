@@ -5,6 +5,7 @@ import Camera from '@/components/Camera';
 import { generateVerificationCode } from '@/utils/verification';
 import { Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Layout from '@/components/Layout';
 
 const Capture: React.FC = () => {
   const navigate = useNavigate();
@@ -36,28 +37,32 @@ const Capture: React.FC = () => {
 
   if (isProcessing) {
     return (
-      <div className="fixed inset-0 bg-black flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="bg-black/80 backdrop-blur-md p-8 rounded-3xl"
-        >
-          <div className="mb-6">
-            <Loader2 className="h-12 w-12 text-white animate-spin mx-auto" />
-          </div>
-          <h2 className="text-2xl font-bold text-white mb-2">Processing</h2>
-          <p className="text-white/80 text-center">
-            Verifying and securing your capture...
-          </p>
-        </motion.div>
-      </div>
+      <Layout hideNav>
+        <div className="fixed inset-0 bg-black flex items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-black/80 backdrop-blur-md p-8 rounded-3xl"
+          >
+            <div className="mb-6">
+              <Loader2 className="h-12 w-12 text-white animate-spin mx-auto" />
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-2">Processing</h2>
+            <p className="text-white/80 text-center">
+              Verifying and securing your capture...
+            </p>
+          </motion.div>
+        </div>
+      </Layout>
     );
   }
 
   return (
-    <div className="fixed inset-0">
-      <Camera onCapture={handleCapture} onClose={() => navigate('/')} />
-    </div>
+    <Layout hideNav>
+      <div className="fixed inset-0">
+        <Camera onCapture={handleCapture} onClose={() => navigate('/')} />
+      </div>
+    </Layout>
   );
 };
 

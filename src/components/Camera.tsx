@@ -29,7 +29,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-black flex flex-col">
+    <div className="absolute inset-0 bg-black flex flex-col">
       {/* Camera Viewfinder */}
       <div className="relative flex-1 overflow-hidden">
         <video 
@@ -41,9 +41,15 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
         />
         
         {/* iOS-style status bar */}
-        <div className="absolute top-0 left-0 right-0 h-12 bg-black/40 backdrop-blur-md z-10 flex items-center justify-between px-4">
-          <div className="text-white text-sm">TrueCapture</div>
-          <div className="text-white text-sm">
+        <div className="absolute top-0 left-0 right-0 h-12 bg-black/60 backdrop-blur-md z-10 flex items-center justify-between px-4">
+          <button 
+            onClick={handleClose}
+            className="text-white flex items-center"
+          >
+            <X size={20} className="mr-1" />
+            <span>Close</span>
+          </button>
+          <div className="text-white text-sm font-medium">
             {mode === 'photo' ? 'Photo Mode' : 'Video Mode'}
           </div>
         </div>
@@ -51,7 +57,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
         {/* Countdown Overlay */}
         {countdown !== null && (
           <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/50">
-            <div className="w-24 h-24 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-black/70 backdrop-blur-lg flex items-center justify-center">
               <div className="text-6xl font-bold text-white">
                 {countdown}
               </div>
@@ -61,7 +67,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
       </div>
       
       {/* iOS-style Camera Controls */}
-      <div className="bg-black px-4 py-6">
+      <div className="bg-black pt-4 pb-8 px-4">
         {/* Camera Mode Selector */}
         <div className="flex justify-center mb-8">
           <div className="bg-black/70 backdrop-blur-md rounded-full p-1 border border-white/20">
@@ -69,7 +75,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
               <button 
                 onClick={() => setMode('photo')}
                 className={cn(
-                  "relative z-10 px-6 py-2 rounded-full text-sm font-medium transition-colors",
+                  "relative z-10 px-10 py-2 rounded-full text-sm font-medium transition-colors",
                   mode === 'photo' 
                     ? "text-black" 
                     : "text-white"
@@ -81,7 +87,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
               <button 
                 onClick={() => setMode('video')}
                 className={cn(
-                  "relative z-10 px-6 py-2 rounded-full text-sm font-medium transition-colors",
+                  "relative z-10 px-10 py-2 rounded-full text-sm font-medium transition-colors",
                   mode === 'video' 
                     ? "text-black" 
                     : "text-white"
@@ -102,13 +108,13 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
         </div>
         
         {/* Capture Controls */}
-        <div className="flex items-center justify-center gap-10">
+        <div className="flex items-center justify-center gap-14">
           {/* Flip Camera Button */}
           <button 
             onClick={toggleCamera}
-            className="w-12 h-12 rounded-full bg-black/40 flex items-center justify-center text-white border border-white/30"
+            className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white"
           >
-            <RotateCw size={22} />
+            <RotateCw size={24} />
           </button>
           
           {/* Capture Button */}
@@ -118,23 +124,23 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
             className={cn(
               "flex items-center justify-center rounded-full border-4",
               isRecording 
-                ? "bg-red-500 border-white w-20 h-20" 
-                : "bg-transparent border-white w-20 h-20"
+                ? "bg-red-500 border-white w-24 h-24" 
+                : "bg-transparent border-white w-24 h-24"
             )}
           >
             {isRecording ? (
-              <div className="w-10 h-10 rounded-sm bg-red-600" />
+              <div className="w-12 h-12 rounded-sm bg-red-600" />
             ) : (
-              <div className="rounded-full bg-white w-14 h-14" />
+              <div className="rounded-full bg-white w-16 h-16" />
             )}
           </button>
           
           {/* Close Button */}
           <button 
             onClick={handleClose}
-            className="w-12 h-12 rounded-full bg-black/40 flex items-center justify-center text-white border border-white/30"
+            className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white"
           >
-            <X size={22} />
+            <div className="w-6 h-6 rounded bg-white"></div>
           </button>
         </div>
         
