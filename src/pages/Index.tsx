@@ -42,50 +42,35 @@ const Index: React.FC = () => {
             transition={{ duration: 0.5 }}
           >
             <div className="flex justify-center mb-4">
-              <VerifiedBadge size="lg" animated />
+              <VerifiedBadge size="lg" />
             </div>
             
             {/* Enhanced TruCapture Logo/Header */}
             <div className="mb-4">
-              <h1 className="relative text-4xl font-black text-verified-dark inline-block gta-header">
+              <h1 className="relative text-4xl font-black text-verified-dark inline-block">
                 <span className="relative z-10">TrueCapture</span>
-                <div className="absolute -bottom-1 left-0 right-0 h-3 bg-verified-yellow opacity-70 transform -rotate-1"></div>
+                <div className="absolute -bottom-1 left-0 right-0 h-3 bg-verified-yellow opacity-50 transform -rotate-1"></div>
               </h1>
             </div>
             
             {/* Simplified tagline */}
             <div className="relative mb-3 inline-block">
-              <p className="text-verified-dark/80 text-lg font-medium px-2 relative z-10 nineties-text-shadow" style={{ textShadow: '1px 1px 0 rgba(0,0,0,0.5)' }}>
+              <p className="text-verified-dark/80 text-lg font-medium px-2 relative z-10">
                 Authenticity in the digital age
               </p>
             </div>
             
             {/* App-appropriate feature tags */}
             <div className="flex flex-wrap justify-center gap-2 mb-5">
-              <motion.span 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="bg-verified-green text-verified-yellow px-3 py-1 rounded-full text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
-              >
+              <span className="bg-verified-green/20 text-verified-green px-3 py-1 rounded-full text-sm font-medium">
                 #TamperProof
-              </motion.span>
-              <motion.span 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="bg-verified-dark text-verified-yellow px-3 py-1 rounded-full text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
-              >
+              </span>
+              <span className="bg-verified-green/20 text-verified-green px-3 py-1 rounded-full text-sm font-medium">
                 #VerifiableMedia
-              </motion.span>
-              <motion.span 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="bg-verified-green text-verified-yellow px-3 py-1 rounded-full text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]"
-              >
+              </span>
+              <span className="bg-verified-green/20 text-verified-green px-3 py-1 rounded-full text-sm font-medium">
                 #TrustChain
-              </motion.span>
+              </span>
             </div>
             
             {/* Enlarged primary action buttons */}
@@ -121,12 +106,12 @@ const Index: React.FC = () => {
           </motion.div>
         </section>
         
-        {/* How It Works Section - spicier and more stylized */}
+        {/* How It Works Section - smaller and more stylized */}
         <section className="py-5 px-4">
           <div className="max-w-md mx-auto relative">
             {/* Background elements */}
-            <div className="absolute -top-3 -bottom-3 -left-3 -right-3 bg-white/20 backdrop-blur-sm rounded-2xl -z-10"></div>
-            <div className="absolute -top-3 -bottom-3 -left-3 -right-3 border-2 border-dashed border-verified-green/30 rounded-2xl -z-10"></div>
+            <div className="absolute -top-3 -bottom-3 -left-3 -right-3 bg-white/30 backdrop-blur-sm rounded-2xl -z-10"></div>
+            <div className="absolute -top-3 -bottom-3 -left-3 -right-3 border-2 border-dashed border-verified-green/10 rounded-2xl -z-10"></div>
             
             <motion.div 
               className="text-center mb-4"
@@ -134,99 +119,87 @@ const Index: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="inline-block bg-verified-green text-verified-yellow px-4 py-1 rounded-sm text-xs font-bold mb-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.6)]" style={{ textShadow: '1px 1px 0 rgba(0,0,0,0.8)' }}>
-                HOW IT WORKS
+              <div className="inline-block bg-verified-green text-white px-3 py-0.5 rounded-full text-xs font-bold mb-1">
+                How It Works
               </div>
-              <h2 className="text-xl font-bold text-verified-dark gta-header" style={{ textShadow: '2px 2px 0 rgba(0,0,0,0.6)' }}>
-                THREE-STEP PROCESS
+              <h2 className="text-xl font-bold text-verified-dark">
+                Simple Three-Step Process
               </h2>
             </motion.div>
             
             <motion.div 
-              className="grid grid-cols-3 gap-3"
+              className="grid grid-cols-3 gap-2"
               variants={staggerVariants}
               initial="hidden"
               animate="visible"
             >
-              <motion.div variants={itemVariants} className="flex flex-col items-center gap-2 bg-verified-yellow p-3 rounded-lg text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,0.4)]">
-                <div className="bg-verified-green p-2 rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,0.4)]">
-                  <Camera className="h-5 w-5 text-verified-yellow" />
+              <motion.div variants={itemVariants} className="flex flex-col items-center gap-2 glass-morphism p-3 rounded-lg text-center">
+                <div className="gradient-green p-2 rounded-full shadow-sm">
+                  <Camera className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-verified-dark text-xs uppercase" style={{ textShadow: '1px 1px 0 rgba(0,0,0,0.3)' }}>Capture</h3>
+                  <h3 className="font-bold text-verified-dark text-xs">Capture</h3>
                 </div>
               </motion.div>
               
-              <motion.div variants={itemVariants} className="flex flex-col items-center gap-2 bg-verified-dark p-3 rounded-lg text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,0.4)]">
-                <div className="bg-verified-green p-2 rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,0.4)]">
-                  <Shield className="h-5 w-5 text-verified-yellow" />
+              <motion.div variants={itemVariants} className="flex flex-col items-center gap-2 glass-morphism p-3 rounded-lg text-center">
+                <div className="gradient-green p-2 rounded-full shadow-sm">
+                  <Shield className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-verified-yellow text-xs uppercase" style={{ textShadow: '1px 1px 0 rgba(0,0,0,0.8)' }}>Secure</h3>
+                  <h3 className="font-bold text-verified-dark text-xs">Secure</h3>
                 </div>
               </motion.div>
               
-              <motion.div variants={itemVariants} className="flex flex-col items-center gap-2 bg-verified-yellow p-3 rounded-lg text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,0.4)]">
-                <div className="bg-verified-green p-2 rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,0.4)]">
-                  <CheckCircle className="h-5 w-5 text-verified-yellow" />
+              <motion.div variants={itemVariants} className="flex flex-col items-center gap-2 glass-morphism p-3 rounded-lg text-center">
+                <div className="gradient-green p-2 rounded-full shadow-sm">
+                  <CheckCircle className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-verified-dark text-xs uppercase" style={{ textShadow: '1px 1px 0 rgba(0,0,0,0.3)' }}>Verify</h3>
+                  <h3 className="font-bold text-verified-dark text-xs">Verify</h3>
                 </div>
               </motion.div>
             </motion.div>
           </div>
         </section>
         
-        {/* Use Cases Section - more stylized but still compact */}
+        {/* Use Cases Section - even more compact */}
         <section className="py-5 px-4">
           <div className="max-w-md mx-auto">
             <motion.div 
-              className="text-center mb-4"
+              className="text-center mb-3"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="inline-block bg-verified-dark text-verified-yellow px-4 py-1 rounded-sm text-xs font-bold mb-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.6)]" style={{ textShadow: '1px 1px 0 rgba(0,0,0,0.8)' }}>
-                PERFECT FOR
-              </div>
+              <h2 className="text-lg font-bold text-verified-dark mb-1">
+                Perfect For
+              </h2>
             </motion.div>
             
-            <div className="grid grid-cols-2 gap-3 mb-5">
+            <div className="grid grid-cols-2 gap-2 mb-5">
               <UseCase 
-                icon={<FileText className="h-5 w-5 text-verified-yellow" />}
+                icon={<FileText className="h-4 w-4 text-verified-green" />}
                 title="Journalism"
-                description="Verify sources"
                 delay={0.1}
-                bgColor="bg-verified-green"
-                textColor="text-verified-yellow"
               />
               
               <UseCase 
-                icon={<Camera className="h-5 w-5 text-verified-dark" />}
+                icon={<Camera className="h-4 w-4 text-verified-green" />}
                 title="Creators"
-                description="Protect your work"
                 delay={0.2}
-                bgColor="bg-verified-yellow"
-                textColor="text-verified-dark"
               />
               
               <UseCase 
-                icon={<Shield className="h-5 w-5 text-verified-yellow" />}
+                icon={<Shield className="h-4 w-4 text-verified-green" />}
                 title="Insurance"
-                description="Prevent fraud"
                 delay={0.3}
-                bgColor="bg-verified-green"
-                textColor="text-verified-yellow"
               />
               
               <UseCase 
-                icon={<Scale className="h-5 w-5 text-verified-dark" />}
+                icon={<Scale className="h-4 w-4 text-verified-green" />}
                 title="Legal"
-                description="Evidence chain"
                 delay={0.4}
-                bgColor="bg-verified-yellow"
-                textColor="text-verified-dark"
               />
             </div>
           </div>
@@ -241,27 +214,22 @@ const Index: React.FC = () => {
 interface UseCaseProps {
   icon: React.ReactNode;
   title: string;
-  description: string;
   delay: number;
-  bgColor: string;
-  textColor: string;
 }
 
-const UseCase: React.FC<UseCaseProps> = ({ icon, title, description, delay, bgColor, textColor }) => {
+const UseCase: React.FC<UseCaseProps> = ({ icon, title, delay }) => {
   return (
     <motion.div 
-      className={`${bgColor} rounded-lg overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,0.4)]`}
+      className="glass-morphism rounded-xl overflow-hidden shadow-sm"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.5 }}
-      whileHover={{ y: -3, transition: { duration: 0.2 } }}
     >
-      <div className="p-3 text-center">
-        <div className="bg-black/20 p-2 rounded-full w-10 h-10 flex items-center justify-center mx-auto mb-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]">
+      <div className="p-2 text-center">
+        <div className="bg-verified-green/10 p-1.5 rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-1">
           {icon}
         </div>
-        <h3 className={`font-bold ${textColor} text-sm uppercase`} style={{ textShadow: '1px 1px 0 rgba(0,0,0,0.3)' }}>{title}</h3>
-        <p className={`text-xs ${textColor}/80 mt-1`}>{description}</p>
+        <h3 className="font-bold text-verified-dark text-xs">{title}</h3>
       </div>
     </motion.div>
   );
