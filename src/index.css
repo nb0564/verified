@@ -54,37 +54,36 @@
     overflow-x: hidden;
   }
 
-  /* Custom classes */
+  /* Custom classes - simplified without animations */
   .glass {
     @apply backdrop-blur-md bg-white/10 border border-white/30;
   }
 
-  /* 90s style text for VERIFIED badge */
+  /* Clean 90s style text for VERIFIED badge */
   .retro-text {
     letter-spacing: 0.15em;
     font-weight: 900;
     text-transform: uppercase;
     color: #00A550;
     text-shadow: 
-      2px 2px 0 rgba(0,0,0,0.1),
-      -1px -1px 0 rgba(255,255,255,0.3);
+      1px 1px 0 rgba(0,0,0,0.1);
     position: relative;
   }
 
-  /* Button styles */
+  /* Static Button styles without transforms */
   .btn-primary {
-    @apply bg-verified-green text-white font-bold py-2.5 px-5 rounded-lg shadow hover:brightness-105 transition-all duration-200 active:scale-97;
+    @apply bg-verified-green text-white font-bold py-2.5 px-5 rounded-lg shadow hover:brightness-105 transition-colors duration-100;
   }
 
   .btn-secondary {
-    @apply bg-verified-yellow text-verified-dark font-bold py-2.5 px-5 rounded-lg shadow hover:brightness-105 transition-all duration-200 active:scale-97;
+    @apply bg-verified-yellow text-verified-dark font-bold py-2.5 px-5 rounded-lg shadow hover:brightness-105 transition-colors duration-100;
   }
 
-  /* iOS specific styles */
+  /* iOS specific styles - no animations */
   .ios-btn {
     @apply relative overflow-hidden rounded-xl bg-gradient-to-b from-white/90 to-white/70 
            shadow-md backdrop-blur-lg border border-white/20 
-           active:scale-97 transition-all duration-150;
+           transition-colors duration-100;
   }
   
   .ios-card {
@@ -95,7 +94,7 @@
   .ios-input {
     @apply bg-white/80 backdrop-blur-md rounded-lg border border-white/30 
            px-4 py-2.5 focus:ring-1 focus:ring-verified-green/40 
-           focus:border-verified-green transition-all duration-150;
+           focus:border-verified-green transition-colors duration-100;
   }
   
   /* Enhanced gradients */
@@ -107,7 +106,7 @@
     @apply bg-gradient-to-r from-[#00A550] to-[#00C467];
   }
   
-  /* Glass effects */
+  /* Glass effects - simplified */
   .glass-morphism {
     @apply backdrop-blur-md bg-white/30 border border-white/30 
            shadow-sm;
@@ -115,24 +114,5 @@
   
   .neo-blur {
     @apply backdrop-blur-xl bg-white/50 border border-white/40;
-  }
-
-  /* Simplified transitions with no animations */
-  .page-transition-enter {
-    opacity: 0;
-  }
-
-  .page-transition-enter-active {
-    opacity: 1;
-    transition: opacity 250ms;
-  }
-
-  .page-transition-exit {
-    opacity: 1;
-  }
-
-  .page-transition-exit-active {
-    opacity: 0;
-    transition: opacity 200ms;
   }
 }
