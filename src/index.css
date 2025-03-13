@@ -54,7 +54,7 @@
     overflow-x: hidden;
   }
 
-  /* Custom classes - simplified without animations */
+  /* Instagram-inspired styling classes */
   .glass {
     @apply backdrop-blur-md bg-white/10 border border-white/30;
   }
@@ -70,7 +70,7 @@
     position: relative;
   }
 
-  /* Button styles without animations */
+  /* Button styles with Instagram-inspired aesthetics */
   .btn-primary {
     @apply bg-verified-green text-white font-bold py-2.5 px-5 rounded-lg shadow hover:brightness-105 transition-colors duration-100;
   }
@@ -79,7 +79,7 @@
     @apply bg-verified-yellow text-verified-dark font-bold py-2.5 px-5 rounded-lg shadow hover:brightness-105 transition-colors duration-100;
   }
 
-  /* iOS specific styles - no animations */
+  /* iOS & Instagram hybrid styles */
   .ios-btn {
     @apply relative overflow-hidden rounded-xl bg-gradient-to-b from-white/90 to-white/70 
            shadow-md backdrop-blur-lg border border-white/20 
@@ -97,7 +97,7 @@
            focus:border-verified-green transition-colors duration-100;
   }
   
-  /* Enhanced gradients */
+  /* Instagram-inspired gradients */
   .gradient-yellow {
     @apply bg-gradient-to-r from-[#FFCF00] to-[#FFE29F];
   }
@@ -106,7 +106,11 @@
     @apply bg-gradient-to-r from-[#00A550] to-[#00C467];
   }
   
-  /* Glass effects - enhanced */
+  .instagram-gradient {
+    @apply bg-gradient-to-r from-[#F56040] via-[#F77737] via-[#FCAF45] via-[#FFDC80] to-[#833AB4];
+  }
+  
+  /* Glass effects - Instagram-inspired */
   .glass-morphism {
     @apply backdrop-blur-md bg-white/30 border border-white/30 
            shadow-sm hover:bg-white/40 transition-colors duration-200;
@@ -115,5 +119,13 @@
   .neo-blur {
     @apply backdrop-blur-xl bg-white/50 border border-white/40 
            shadow-sm hover:bg-white/60 transition-colors duration-200;
+  }
+  
+  .instagram-card {
+    @apply rounded-xl overflow-hidden bg-white shadow-md;
+  }
+  
+  .instagram-story-ring {
+    @apply p-1 rounded-full bg-gradient-to-br from-verified-green via-verified-yellow to-verified-green;
   }
 }

@@ -2,7 +2,7 @@
 import React from 'react';
 import { useCameraControls } from './camera/useCameraControls';
 import CameraPermissionDenied from './camera/CameraPermissionDenied';
-import { RotateCw, X } from 'lucide-react';
+import { RotateCw, X, Zap, ImagePlus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CameraProps {
@@ -40,17 +40,31 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
           className="absolute inset-0 h-full w-full object-cover"
         />
         
-        {/* iOS-style status bar */}
-        <div className="absolute top-0 left-0 right-0 h-12 bg-black/60 backdrop-blur-md z-10 flex items-center justify-between px-4">
+        {/* Instagram-style header */}
+        <div className="absolute top-0 left-0 right-0 h-14 bg-black/60 backdrop-blur-md z-10 flex items-center justify-between px-4">
           <button 
             onClick={handleClose}
-            className="text-white flex items-center"
+            className="text-white flex items-center gap-1 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full"
           >
-            <X size={20} className="mr-1" />
-            <span>Close</span>
+            <X size={18} className="text-white" />
+            <span className="text-sm">Close</span>
           </button>
-          <div className="text-white text-sm font-medium">
-            {mode === 'photo' ? 'Photo Mode' : 'Video Mode'}
+          <div className="flex gap-3">
+            <button className="text-white bg-black/30 backdrop-blur-md p-2 rounded-full">
+              <Zap size={18} />
+            </button>
+            <button onClick={toggleCamera} className="text-white bg-black/30 backdrop-blur-md p-2 rounded-full">
+              <RotateCw size={18} />
+            </button>
+          </div>
+        </div>
+        
+        {/* Instagram-style filter tabs */}
+        <div className="absolute top-16 left-0 right-0 z-10 flex justify-center">
+          <div className="flex space-x-4 px-4 py-2 bg-black/40 backdrop-blur-md rounded-full">
+            <span className="text-white text-xs font-bold border-b-2 border-white px-1">Camera</span>
+            <span className="text-white/60 text-xs px-1">Create</span>
+            <span className="text-white/60 text-xs px-1">Story</span>
           </div>
         </div>
         
@@ -66,7 +80,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
         )}
       </div>
       
-      {/* iOS-style Camera Controls */}
+      {/* Instagram-style Camera Controls */}
       <div className="bg-black pt-4 pb-8 px-4">
         {/* Camera Mode Selector */}
         <div className="flex justify-center mb-8">
@@ -107,14 +121,11 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
           </div>
         </div>
         
-        {/* Capture Controls */}
+        {/* Instagram-inspired Capture Controls */}
         <div className="flex items-center justify-center gap-14">
-          {/* Flip Camera Button */}
-          <button 
-            onClick={toggleCamera}
-            className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white"
-          >
-            <RotateCw size={24} />
+          {/* Gallery Button (Instagram style) */}
+          <button className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
+            <ImagePlus size={24} />
           </button>
           
           {/* Capture Button */}
@@ -131,7 +142,7 @@ const Camera: React.FC<CameraProps> = ({ onCapture, onClose }) => {
             {isRecording ? (
               <div className="w-12 h-12 rounded-sm bg-red-600" />
             ) : (
-              <div className="rounded-full bg-white w-16 h-16" />
+              <div className="instagram-story-ring rounded-full bg-white w-16 h-16" />
             )}
           </button>
           

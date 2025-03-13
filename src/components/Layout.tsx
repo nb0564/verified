@@ -25,14 +25,14 @@ const Layout: React.FC<LayoutProps> = ({ children, hideNav = false }) => {
 
         {/* Phone Content */}
         <div className="relative w-full h-full overflow-hidden bg-verified-yellow">
-          {/* iOS-style status bar - improved with better spacing */}
-          <div className="h-14 bg-white/10 backdrop-blur-sm fixed top-0 left-0 right-0 z-30 border-b border-black/5">
+          {/* Instagram-style status bar with brand colors */}
+          <div className="h-14 bg-gradient-to-r from-verified-yellow to-verified-yellow/95 backdrop-blur-md fixed top-0 left-0 right-0 z-30 border-b border-verified-green/10 shadow-sm">
             <div className="h-full flex items-center justify-between px-5">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-full bg-verified-green flex items-center justify-center text-white font-bold shadow-sm">
                   TC
                 </div>
-                <span className="font-bold text-verified-dark tracking-tight">TrueCapture</span>
+                <span className="font-black text-verified-dark tracking-tight text-xl">TrueCapture</span>
               </div>
               <Link 
                 to="/capture"
@@ -54,10 +54,10 @@ const Layout: React.FC<LayoutProps> = ({ children, hideNav = false }) => {
             </motion.div>
           </main>
           
-          {/* Navigation - always visible now */}
+          {/* Instagram-inspired bottom navigation */}
           <nav className="absolute bottom-0 left-0 right-0 z-20 p-4 pb-6">
-            <div className="neo-blur rounded-2xl">
-              <div className="flex justify-around items-center py-2 px-1">
+            <div className="neo-blur rounded-2xl border border-white/20 shadow-lg">
+              <div className="flex justify-around items-center py-3 px-1">
                 <NavItem to="/" icon={<Home />} label="Home" isActive={location.pathname === '/'} />
                 <NavItem to="/capture" icon={<Camera />} label="Capture" isActive={location.pathname === '/capture'} />
                 <NavItem to="/verify" icon={<Search />} label="Verify" isActive={location.pathname === '/verify'} />

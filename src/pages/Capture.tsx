@@ -38,7 +38,7 @@ const Capture: React.FC = () => {
   if (isProcessing) {
     return (
       <Layout>
-        <div className="fixed inset-0 flex items-center justify-center z-40">
+        <div className="absolute inset-0 flex items-center justify-center z-40 bg-black/50 backdrop-blur-sm">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -59,7 +59,7 @@ const Capture: React.FC = () => {
 
   return (
     <Layout>
-      <div className="relative h-full w-full overflow-hidden">
+      <div className="absolute inset-0 z-10">
         <Camera onCapture={handleCapture} onClose={() => navigate('/')} />
       </div>
     </Layout>
