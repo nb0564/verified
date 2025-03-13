@@ -59,7 +59,7 @@ const Capture: React.FC = () => {
 
   return (
     <Layout>
-      <div className="absolute inset-x-0 top-0 bottom-20 z-10">
+      <div className="absolute inset-x-0 top-0 bottom-16 z-10">
         <Camera onCapture={handleCapture} onClose={() => navigate('/')} />
       </div>
     </Layout>

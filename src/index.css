@@ -52,6 +52,9 @@
   body {
     @apply bg-verified-yellow text-verified-dark font-sans antialiased;
     overflow-x: hidden;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.2) 8%, transparent 8%);
+    background-position: 0 0;
+    background-size: 30px 30px;
   }
 
   /* Instagram-inspired styling classes */
@@ -59,7 +62,7 @@
     @apply backdrop-blur-md bg-white/10 border border-white/30;
   }
 
-  /* Clean 90s style text for VERIFIED badge */
+  /* 90s style text for VERIFIED badge */
   .retro-text {
     letter-spacing: 0.15em;
     font-weight: 900;
@@ -68,6 +71,12 @@
     text-shadow: 
       1px 1px 0 rgba(0,0,0,0.1);
     position: relative;
+  }
+
+  /* 90s text shadow */
+  .nineties-text-shadow {
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2),
+                 4px 4px 0 rgba(0, 165, 80, 0.2);
   }
 
   /* Button styles with Instagram-inspired aesthetics */
@@ -108,6 +117,94 @@
   
   .instagram-gradient {
     @apply bg-gradient-to-r from-[#F56040] via-[#F77737] via-[#FCAF45] via-[#FFDC80] to-[#833AB4];
+  }
+
+  /* 90s Aesthetic Styles */
+  .nineties-gradient {
+    background: linear-gradient(90deg, #ff00cc, #3333ff);
+  }
+
+  .nineties-glow {
+    background: linear-gradient(45deg, #00ffff, #ff00ff);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.5);
+  }
+
+  .nineties-button {
+    background: linear-gradient(45deg, #ff00cc, #3333ff);
+    border: 2px solid white;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .nineties-button-alt {
+    background: linear-gradient(45deg, #ffff00, #00ffcc);
+    border: 2px solid white;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .neo-brutalism {
+    background: white;
+    border: 3px solid black;
+    box-shadow: 5px 5px 0 black;
+  }
+
+  .gradient-button {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+  }
+
+  .gradient-code {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    box-shadow: 0 0 15px rgba(106, 17, 203, 0.4);
+  }
+
+  .shadow-neon {
+    box-shadow: 0 0 5px #ff00de, 0 0 15px #00b3ff;
+  }
+
+  .holographic-card {
+    position: relative;
+    background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.95));
+    overflow: hidden;
+  }
+
+  .holographic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 30%, rgba(255,255,255,0) 60%);
+    transform: translateX(-100%);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+  }
+
+  .neo-glow {
+    box-shadow: 0 0 30px rgba(0, 165, 80, 0.2);
+  }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes gradient-xy {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  .animate-gradient-xy {
+    background-size: 300% 300%;
+    animation: gradient-xy 15s ease infinite;
   }
   
   /* Glass effects - Instagram-inspired */
