@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import VerifiedBadge from '@/components/VerifiedBadge';
-import { Camera, Search, CheckCircle, Shield, FileText, Scale } from 'lucide-react';
+import { Camera, Search, CheckCircle, Shield, FileText, Scale, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Footer from '@/components/Footer';
@@ -33,7 +33,7 @@ const Index: React.FC = () => {
   return (
     <Layout hideNav={false}>
       <div className="min-h-screen">
-        {/* Hero Section */}
+        {/* Hero Section with improved aesthetics */}
         <section className="pt-8 pb-12 px-4">
           <motion.div 
             className="text-center max-w-md mx-auto"
@@ -45,13 +45,22 @@ const Index: React.FC = () => {
               <VerifiedBadge size="lg" />
             </div>
             
-            <h1 className="text-3xl font-bold text-verified-dark mb-3">
-              TrueCapture
-            </h1>
+            {/* Enhanced TruCapture Logo/Header */}
+            <div className="mb-4">
+              <h1 className="relative text-4xl font-black text-verified-dark inline-block">
+                <span className="relative z-10">TrueCapture</span>
+                <div className="absolute -bottom-1 left-0 right-0 h-3 bg-verified-yellow opacity-50 transform -rotate-1"></div>
+              </h1>
+            </div>
             
-            <p className="text-verified-dark/80 mb-2 text-lg">
-              Authenticity in the digital age
-            </p>
+            {/* Enhanced tagline styling */}
+            <div className="relative mb-3 inline-block">
+              <p className="text-verified-dark/80 text-lg font-medium px-2 relative z-10">
+                Authenticity in the digital age
+              </p>
+              <Sparkles className="absolute -right-6 -top-1 text-verified-green" size={16} />
+              <Sparkles className="absolute -left-6 -top-2 text-verified-green" size={14} />
+            </div>
             
             {/* App-appropriate feature tags replacing long paragraph */}
             <div className="flex flex-wrap justify-center gap-2 mb-6">
@@ -69,7 +78,7 @@ const Index: React.FC = () => {
             <div className="flex flex-col gap-3 max-w-xs mx-auto">
               <Button 
                 onClick={() => navigate('/capture')} 
-                className="bg-verified-green text-white hover:bg-verified-green/90 flex items-center justify-center gap-2 h-12"
+                className="gradient-green text-white hover:bg-verified-green/90 flex items-center justify-center gap-2 h-12 shadow-md"
               >
                 <Camera size={20} />
                 <span>Start Capturing</span>
@@ -77,7 +86,7 @@ const Index: React.FC = () => {
               
               <Button 
                 onClick={() => navigate('/verify')} 
-                className="bg-verified-yellow text-verified-dark hover:bg-verified-yellow/90 flex items-center justify-center gap-2 h-12"
+                className="gradient-yellow text-verified-dark hover:bg-verified-yellow/90 flex items-center justify-center gap-2 h-12 shadow-md"
               >
                 <Search size={20} />
                 <span>Verify Media</span>
@@ -97,17 +106,24 @@ const Index: React.FC = () => {
           </motion.div>
         </section>
         
-        {/* How It Works Section - more app-focused content */}
-        <section className="py-10 px-4 bg-white/50 backdrop-blur-sm">
-          <div className="max-w-md mx-auto">
+        {/* How It Works Section - enhanced with more interesting borders and aesthetics */}
+        <section className="py-10 px-4">
+          <div className="max-w-md mx-auto relative">
+            {/* Ornamental elements to make the section more interesting */}
+            <div className="absolute -top-5 -bottom-5 -left-5 -right-5 bg-white/50 backdrop-blur-sm rounded-2xl -z-10"></div>
+            <div className="absolute -top-5 -bottom-5 -left-5 -right-5 border-2 border-dashed border-verified-green/20 rounded-2xl -z-10"></div>
+            
             <motion.div 
               className="text-center mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl font-bold text-verified-dark mb-2">
+              <div className="inline-block bg-verified-green text-white px-4 py-1 rounded-full text-sm font-bold mb-2">
                 How It Works
+              </div>
+              <h2 className="text-2xl font-bold text-verified-dark">
+                Simple Three-Step Process
               </h2>
             </motion.div>
             
@@ -117,9 +133,9 @@ const Index: React.FC = () => {
               initial="hidden"
               animate="visible"
             >
-              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-3 rounded-lg shadow-sm">
-                <div className="bg-verified-green/10 p-2 rounded-full">
-                  <Camera className="h-5 w-5 text-verified-green" />
+              <motion.div variants={itemVariants} className="flex items-start gap-4 glass-morphism p-4 rounded-lg">
+                <div className="gradient-green p-3 rounded-full shadow-sm">
+                  <Camera className="h-5 w-5 text-white" />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-verified-dark text-sm">Capture</h3>
@@ -127,9 +143,9 @@ const Index: React.FC = () => {
                 </div>
               </motion.div>
               
-              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-3 rounded-lg shadow-sm">
-                <div className="bg-verified-green/10 p-2 rounded-full">
-                  <Shield className="h-5 w-5 text-verified-green" />
+              <motion.div variants={itemVariants} className="flex items-start gap-4 glass-morphism p-4 rounded-lg">
+                <div className="gradient-green p-3 rounded-full shadow-sm">
+                  <Shield className="h-5 w-5 text-white" />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-verified-dark text-sm">Secure</h3>
@@ -137,9 +153,9 @@ const Index: React.FC = () => {
                 </div>
               </motion.div>
               
-              <motion.div variants={itemVariants} className="flex items-start gap-4 bg-white/80 p-3 rounded-lg shadow-sm">
-                <div className="bg-verified-green/10 p-2 rounded-full">
-                  <CheckCircle className="h-5 w-5 text-verified-green" />
+              <motion.div variants={itemVariants} className="flex items-start gap-4 glass-morphism p-4 rounded-lg">
+                <div className="gradient-green p-3 rounded-full shadow-sm">
+                  <CheckCircle className="h-5 w-5 text-white" />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-verified-dark text-sm">Verify</h3>
@@ -205,7 +221,7 @@ const Index: React.FC = () => {
               </h2>
               <Button 
                 onClick={() => navigate('/capture')} 
-                className="bg-verified-green text-white hover:bg-verified-green/90 w-full max-w-xs h-12"
+                className="gradient-green text-white hover:bg-verified-green/90 w-full max-w-xs h-12 shadow-md"
               >
                 Capture Verified Media
               </Button>
@@ -228,7 +244,7 @@ interface UseCaseProps {
 const UseCase: React.FC<UseCaseProps> = ({ icon, title, delay }) => {
   return (
     <motion.div 
-      className="bg-white/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-sm"
+      className="glass-morphism rounded-xl overflow-hidden shadow-sm"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.5 }}

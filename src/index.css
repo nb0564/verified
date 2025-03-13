@@ -70,7 +70,7 @@
     position: relative;
   }
 
-  /* Static Button styles without transforms */
+  /* Button styles without animations */
   .btn-primary {
     @apply bg-verified-green text-white font-bold py-2.5 px-5 rounded-lg shadow hover:brightness-105 transition-colors duration-100;
   }
@@ -106,13 +106,14 @@
     @apply bg-gradient-to-r from-[#00A550] to-[#00C467];
   }
   
-  /* Glass effects - simplified */
+  /* Glass effects - enhanced */
   .glass-morphism {
     @apply backdrop-blur-md bg-white/30 border border-white/30 
-           shadow-sm;
+           shadow-sm hover:bg-white/40 transition-colors duration-200;
   }
   
   .neo-blur {
-    @apply backdrop-blur-xl bg-white/50 border border-white/40;
+    @apply backdrop-blur-xl bg-white/50 border border-white/40 
+           shadow-sm hover:bg-white/60 transition-colors duration-200;
   }
 }
