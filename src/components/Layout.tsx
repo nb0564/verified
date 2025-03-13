@@ -36,7 +36,7 @@ const Layout: React.FC<LayoutProps> = ({ children, hideNav = false }) => {
               </div>
               <Link 
                 to="/capture"
-                className="bg-verified-green text-white px-4 py-1.5 rounded-full text-sm font-bold hover:bg-verified-green/90 active:scale-95 transition-all duration-150 shadow-sm"
+                className="bg-verified-green text-white px-4 py-1.5 rounded-full text-sm font-bold hover:bg-verified-green/90 transition-all duration-150 shadow-sm"
               >
                 Capture
               </Link>
@@ -54,17 +54,16 @@ const Layout: React.FC<LayoutProps> = ({ children, hideNav = false }) => {
             </motion.div>
           </main>
           
-          {!hideNav && (
-            <nav className="absolute bottom-0 left-0 right-0 z-20 p-4 pb-6">
-              <div className="neo-blur rounded-2xl">
-                <div className="flex justify-around items-center py-2 px-1">
-                  <NavItem to="/" icon={<Home />} label="Home" isActive={location.pathname === '/'} />
-                  <NavItem to="/capture" icon={<Camera />} label="Capture" isActive={location.pathname === '/capture'} />
-                  <NavItem to="/verify" icon={<Search />} label="Verify" isActive={location.pathname === '/verify'} />
-                </div>
+          {/* Navigation - always visible now */}
+          <nav className="absolute bottom-0 left-0 right-0 z-20 p-4 pb-6">
+            <div className="neo-blur rounded-2xl">
+              <div className="flex justify-around items-center py-2 px-1">
+                <NavItem to="/" icon={<Home />} label="Home" isActive={location.pathname === '/'} />
+                <NavItem to="/capture" icon={<Camera />} label="Capture" isActive={location.pathname === '/capture'} />
+                <NavItem to="/verify" icon={<Search />} label="Verify" isActive={location.pathname === '/verify'} />
               </div>
-            </nav>
-          )}
+            </div>
+          </nav>
           
           <GrainOverlay />
         </div>

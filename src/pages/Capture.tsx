@@ -37,8 +37,8 @@ const Capture: React.FC = () => {
 
   if (isProcessing) {
     return (
-      <Layout hideNav>
-        <div className="fixed inset-0 bg-black flex items-center justify-center">
+      <Layout>
+        <div className="fixed inset-0 flex items-center justify-center z-40">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -58,8 +58,8 @@ const Capture: React.FC = () => {
   }
 
   return (
-    <Layout hideNav>
-      <div className="fixed inset-0">
+    <Layout>
+      <div className="relative h-full w-full overflow-hidden">
         <Camera onCapture={handleCapture} onClose={() => navigate('/')} />
       </div>
     </Layout>

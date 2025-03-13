@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import VerifiedBadge from '@/components/VerifiedBadge';
-import { Camera, Search, CheckCircle, Shield, FileText, Scale, Sparkles } from 'lucide-react';
+import { Camera, Search, CheckCircle, Shield, FileText, Scale } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Footer from '@/components/Footer';
@@ -53,13 +53,11 @@ const Index: React.FC = () => {
               </h1>
             </div>
             
-            {/* Enhanced tagline styling */}
+            {/* Enhanced tagline styling - removed sparkles */}
             <div className="relative mb-3 inline-block">
               <p className="text-verified-dark/80 text-lg font-medium px-2 relative z-10">
                 Authenticity in the digital age
               </p>
-              <Sparkles className="absolute -right-6 -top-1 text-verified-green" size={16} />
-              <Sparkles className="absolute -left-6 -top-2 text-verified-green" size={14} />
             </div>
             
             {/* App-appropriate feature tags replacing long paragraph */}
