@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Check } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface VerifiedBadgeProps {
   size?: 'sm' | 'md' | 'lg';
@@ -9,28 +10,36 @@ interface VerifiedBadgeProps {
 
 const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({ size = 'md', className = '' }) => {
   const sizeClasses = {
-    sm: 'scale-50',
-    md: 'scale-75',
+    sm: 'scale-60',
+    md: 'scale-80',
     lg: 'scale-100',
   };
 
   return (
-    <div className={`flex flex-col items-center justify-center ${className} ${sizeClasses[size]}`}>
-      {/* Circle with checkmark */}
-      <div className="bg-verified-green rounded-full w-16 h-16 flex items-center justify-center shadow-lg shadow-verified-green/30 mb-3">
-        <Check className="text-verified-yellow w-10 h-10" strokeWidth={4} />
+    <div className={cn(
+      "flex flex-col items-center justify-center", 
+      sizeClasses[size], 
+      className
+    )}>
+      {/* Circle with checkmark - more professional and clean look */}
+      <div className="bg-verified-green rounded-full p-3 flex items-center justify-center shadow-lg mb-2">
+        <CheckCircle2 
+          className="text-white" 
+          size={size === 'lg' ? 32 : size === 'md' ? 24 : 20} 
+          strokeWidth={3}
+        />
       </div>
       
-      {/* Large blocky VERIFIED text */}
-      <div className="text-verified-green text-5xl font-black tracking-wide uppercase mb-2 retro-text">
+      {/* Refined VERIFIED text */}
+      <div className="text-verified-green text-2xl font-black tracking-widest uppercase mb-1 retro-text">
         VERIFIED
       </div>
       
       {/* Horizontal line */}
-      <div className="w-24 h-1 bg-verified-green mb-3"></div>
+      <div className="w-20 h-0.5 bg-verified-green/80 mb-2"></div>
       
       {size === 'lg' && (
-        <div className="text-verified-green text-lg font-bold tracking-wide uppercase">
+        <div className="text-verified-green text-xs font-bold tracking-wider uppercase">
           CERTIFIED AUTHENTIC
         </div>
       )}
