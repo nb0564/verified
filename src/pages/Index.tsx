@@ -73,7 +73,7 @@ const Index: React.FC = () => {
               </span>
             </div>
             
-            {/* Enlarged primary action buttons */}
+            {/* Enlarged primary action buttons with enhanced aesthetics */}
             <div className="mb-8">
               <div className="grid grid-cols-1 gap-3 max-w-xs mx-auto">
                 <motion.div
@@ -82,10 +82,12 @@ const Index: React.FC = () => {
                 >
                   <Button 
                     onClick={() => navigate('/capture')} 
-                    className="nineties-gradient text-white hover:opacity-90 flex items-center justify-center gap-2 h-14 shadow-lg w-full text-lg"
+                    className="nineties-gradient text-white hover:opacity-90 flex items-center justify-center gap-2 h-14 w-full text-lg relative overflow-hidden shadow-[5px_5px_0px_0px_rgba(0,0,0,0.5)]"
                   >
-                    <Camera size={24} />
-                    <span className="font-bold">Start Capturing</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-verified-green/40 to-transparent opacity-40 blur-sm"></div>
+                    <div className="absolute -inset-1 bg-verified-green/10 animate-pulse"></div>
+                    <Camera size={24} className="z-10 drop-shadow-lg" />
+                    <span className="font-bold z-10 text-shadow-sm">Start Capturing</span>
                   </Button>
                 </motion.div>
                 
@@ -95,10 +97,12 @@ const Index: React.FC = () => {
                 >
                   <Button 
                     onClick={() => navigate('/verify')} 
-                    className="gradient-yellow text-verified-dark hover:opacity-90 flex items-center justify-center gap-2 h-14 shadow-lg w-full text-lg"
+                    className="gradient-yellow text-verified-dark hover:opacity-90 flex items-center justify-center gap-2 h-14 w-full text-lg relative overflow-hidden shadow-[5px_5px_0px_0px_rgba(0,0,0,0.5)]"
                   >
-                    <Search size={24} />
-                    <span className="font-bold">Verify Media</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-verified-yellow/40 to-transparent opacity-40 blur-sm"></div>
+                    <div className="absolute -inset-1 bg-verified-yellow/10 animate-pulse"></div>
+                    <Search size={24} className="z-10 drop-shadow-lg" />
+                    <span className="font-bold z-10 text-shadow-sm">Verify Media</span>
                   </Button>
                 </motion.div>
               </div>

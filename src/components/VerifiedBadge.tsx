@@ -38,13 +38,13 @@ const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
       
       {/* 90s blocky text style with enhanced shadowing */}
       <div className="relative">
-        <div className="text-verified-yellow text-xl font-black tracking-widest uppercase mb-1 retro-text nineties-text-shadow" style={{ textShadow: '3px 3px 0 rgba(0,0,0,0.8), 5px 5px 0 rgba(0,165,80,0.6), 7px 7px 0 rgba(14,165,233,0.4)' }}>
+        <div className="text-verified-yellow text-xl font-black tracking-widest uppercase mb-1 retro-text nineties-text-shadow" style={{ textShadow: '3px 3px 0 rgba(0,0,0,0.8), 5px 5px 0 rgba(0,165,80,0.6)' }}>
           VERIFIED
         </div>
       </div>
       
       {/* Pixelated line with enhanced 90s styling in pure green */}
-      <div className="w-16 h-1 bg-verified-green mb-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]" style={{ imageRendering: 'pixelated' }}></div>
+      <div className="w-16 h-1 bg-verified-green mb-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]" style={{ imageRendering: 'pixelated' }}></div>
       
       {size === 'lg' && (
         <div className="text-verified-yellow text-xs font-bold tracking-wider uppercase bg-verified-green/80 px-2 py-0.5 rounded-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]">
