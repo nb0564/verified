@@ -61,18 +61,27 @@ const Verify: React.FC = () => {
   return (
     <Layout>
       <div className="p-6 max-w-md mx-auto pb-24">
-        <motion.div 
-          className="glass-morphism px-6 py-3 rounded-2xl mb-6 mx-auto inline-block"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="text-verified-green flex items-center gap-2">
-            <Shield size={18} className="text-verified-green" />
-            <span className="font-semibold tracking-wide">Verification Portal</span>
-            <Shield size={18} className="text-verified-green" />
-          </div>
-        </motion.div>
+        {/* Enhanced, centered verification portal header */}
+        <div className="flex justify-center mb-6">
+          <motion.div 
+            className="bg-gradient-to-r from-verified-green/80 to-verified-yellow/80 p-[2px] rounded-2xl backdrop-blur-sm shadow-lg"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ 
+              boxShadow: "0 0 15px rgba(0, 165, 80, 0.5)",
+              scale: 1.02
+            }}
+          >
+            <div className="bg-white/80 backdrop-blur-md px-6 py-2.5 rounded-2xl">
+              <div className="text-verified-green flex items-center gap-2">
+                <Shield size={20} className="text-verified-green animate-pulse" />
+                <span className="font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-verified-green to-verified-yellow">Verification Portal</span>
+                <Shield size={20} className="text-verified-green animate-pulse" />
+              </div>
+            </div>
+          </motion.div>
+        </div>
         
         <h1 className="text-4xl font-bold text-verified-dark mb-2 text-center nineties-text-shadow">
           Verify Media
@@ -117,9 +126,10 @@ const Verify: React.FC = () => {
                 </motion.div>
               </div>
               
+              {/* Button with less extreme shadowing */}
               <button 
                 type="submit" 
-                className="gradient-button w-full flex items-center justify-center gap-2 text-white rounded-xl py-4 px-6 font-bold shadow-md"
+                className="w-full flex items-center justify-center gap-2 text-white rounded-xl py-4 px-6 font-bold bg-verified-green border-2 border-verified-yellow shadow-md hover:opacity-90 transition-all"
                 disabled={isVerifying}
               >
                 {isVerifying ? (

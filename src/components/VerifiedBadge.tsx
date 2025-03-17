@@ -51,14 +51,6 @@ const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
           CERTIFIED AUTHENTIC
         </div>
       )}
-      
-      {/* 90s pixelated sparkle effects */}
-      <div className="absolute -right-2 -top-2">
-        <Sparkles size={12} className="text-verified-green/90 animate-pulse" />
-      </div>
-      <div className="absolute -left-2 -bottom-2">
-        <Sparkles size={12} className="text-verified-green/90 animate-pulse" />
-      </div>
     </div>
   );
 
@@ -68,7 +60,6 @@ const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
         initial={{ opacity: 0.7 }}
         animate={{ 
           opacity: [0.3, 1, 0.2, 0.9, 0.1, 0.7, 0.4, 1, 0.2],
-          scale: [0.97, 1.01, 0.99, 1.02, 0.98, 1, 0.97],
           filter: [
             "blur(0px) brightness(1) contrast(1)",
             "blur(2px) brightness(1.2) contrast(1.1)",

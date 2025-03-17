@@ -32,9 +32,9 @@ const Index: React.FC = () => {
 
   return (
     <Layout hideNav={false}>
-      <div className="min-h-screen">
-        {/* Hero Section with improved aesthetics */}
-        <section className="pt-8 pb-5 px-4">
+      <div className="min-h-screen flex flex-col">
+        {/* Hero Section with improved aesthetics - taking full initial viewport */}
+        <section className="pt-8 pb-5 px-4 flex-grow flex flex-col justify-center">
           <motion.div 
             className="text-center max-w-md mx-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -45,9 +45,9 @@ const Index: React.FC = () => {
               <VerifiedBadge size="lg" />
             </div>
             
-            {/* Enhanced TruCapture Logo/Header */}
+            {/* Enhanced TruCapture Logo/Header - smaller */}
             <div className="mb-4">
-              <h1 className="relative text-4xl font-black text-verified-dark inline-block">
+              <h1 className="relative text-3xl font-black text-verified-dark inline-block">
                 <span className="relative z-10">TrueCapture</span>
                 <div className="absolute -bottom-1 left-0 right-0 h-3 bg-verified-yellow opacity-50 transform -rotate-1"></div>
               </h1>
@@ -55,13 +55,13 @@ const Index: React.FC = () => {
             
             {/* Simplified tagline */}
             <div className="relative mb-3 inline-block">
-              <p className="text-verified-dark/80 text-lg font-medium px-2 relative z-10">
+              <p className="text-verified-dark/80 text-base font-medium px-2 relative z-10">
                 Authenticity in the digital age
               </p>
             </div>
             
             {/* App-appropriate feature tags */}
-            <div className="flex flex-wrap justify-center gap-2 mb-5">
+            <div className="flex flex-wrap justify-center gap-2 mb-6">
               <span className="bg-verified-green/20 text-verified-green px-3 py-1 rounded-full text-sm font-medium">
                 #TamperProof
               </span>
@@ -73,8 +73,8 @@ const Index: React.FC = () => {
               </span>
             </div>
             
-            {/* Enlarged primary action buttons with enhanced aesthetics */}
-            <div className="mb-8">
+            {/* Buttons with enhanced aesthetics */}
+            <div className="mb-4">
               <div className="grid grid-cols-1 gap-3 max-w-xs mx-auto">
                 <motion.div
                   whileHover={{ scale: 1.03 }}
@@ -110,23 +110,20 @@ const Index: React.FC = () => {
           </motion.div>
         </section>
         
-        {/* How It Works Section - smaller and more stylized */}
-        <section className="py-5 px-4">
+        {/* How It Works Section - much smaller and more condensed */}
+        <section className="py-2 px-4">
           <div className="max-w-md mx-auto relative">
             {/* Background elements */}
-            <div className="absolute -top-3 -bottom-3 -left-3 -right-3 bg-white/30 backdrop-blur-sm rounded-2xl -z-10"></div>
-            <div className="absolute -top-3 -bottom-3 -left-3 -right-3 border-2 border-dashed border-verified-green/10 rounded-2xl -z-10"></div>
+            <div className="absolute -top-2 -bottom-2 -left-2 -right-2 bg-white/30 backdrop-blur-sm rounded-lg -z-10"></div>
+            <div className="absolute -top-2 -bottom-2 -left-2 -right-2 border-2 border-dashed border-verified-green/10 rounded-lg -z-10"></div>
             
             <motion.div 
-              className="text-center mb-4"
+              className="text-center mb-2"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="inline-block bg-verified-green text-white px-3 py-0.5 rounded-full text-xs font-bold mb-1">
-                How It Works
-              </div>
-              <h2 className="text-xl font-bold text-verified-dark">
+              <h2 className="text-sm font-bold text-verified-dark inline-block px-2 py-0.5 bg-verified-green/10 rounded-full">
                 Simple Three-Step Process
               </h2>
             </motion.div>
@@ -137,27 +134,27 @@ const Index: React.FC = () => {
               initial="hidden"
               animate="visible"
             >
-              <motion.div variants={itemVariants} className="flex flex-col items-center gap-2 glass-morphism p-3 rounded-lg text-center">
-                <div className="gradient-green p-2 rounded-full shadow-sm">
-                  <Camera className="h-4 w-4 text-white" />
+              <motion.div variants={itemVariants} className="flex flex-col items-center gap-1 glass-morphism p-2 rounded-lg text-center">
+                <div className="gradient-green p-1.5 rounded-full shadow-sm">
+                  <Camera className="h-3 w-3 text-white" />
                 </div>
                 <div>
                   <h3 className="font-bold text-verified-dark text-xs">Capture</h3>
                 </div>
               </motion.div>
               
-              <motion.div variants={itemVariants} className="flex flex-col items-center gap-2 glass-morphism p-3 rounded-lg text-center">
-                <div className="gradient-green p-2 rounded-full shadow-sm">
-                  <Shield className="h-4 w-4 text-white" />
+              <motion.div variants={itemVariants} className="flex flex-col items-center gap-1 glass-morphism p-2 rounded-lg text-center">
+                <div className="gradient-green p-1.5 rounded-full shadow-sm">
+                  <Shield className="h-3 w-3 text-white" />
                 </div>
                 <div>
                   <h3 className="font-bold text-verified-dark text-xs">Secure</h3>
                 </div>
               </motion.div>
               
-              <motion.div variants={itemVariants} className="flex flex-col items-center gap-2 glass-morphism p-3 rounded-lg text-center">
-                <div className="gradient-green p-2 rounded-full shadow-sm">
-                  <CheckCircle className="h-4 w-4 text-white" />
+              <motion.div variants={itemVariants} className="flex flex-col items-center gap-1 glass-morphism p-2 rounded-lg text-center">
+                <div className="gradient-green p-1.5 rounded-full shadow-sm">
+                  <CheckCircle className="h-3 w-3 text-white" />
                 </div>
                 <div>
                   <h3 className="font-bold text-verified-dark text-xs">Verify</h3>
@@ -168,40 +165,40 @@ const Index: React.FC = () => {
         </section>
         
         {/* Use Cases Section - even more compact */}
-        <section className="py-5 px-4">
+        <section className="py-2 px-4 mb-2">
           <div className="max-w-md mx-auto">
             <motion.div 
-              className="text-center mb-3"
+              className="text-center mb-2"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h2 className="text-lg font-bold text-verified-dark mb-1">
+              <h2 className="text-sm font-bold text-verified-dark inline-block px-2 py-0.5 bg-verified-green/10 rounded-full">
                 Perfect For
               </h2>
             </motion.div>
             
-            <div className="grid grid-cols-2 gap-2 mb-5">
+            <div className="grid grid-cols-2 gap-2 mb-4">
               <UseCase 
-                icon={<FileText className="h-4 w-4 text-verified-green" />}
+                icon={<FileText className="h-3 w-3 text-verified-green" />}
                 title="Journalism"
                 delay={0.1}
               />
               
               <UseCase 
-                icon={<Camera className="h-4 w-4 text-verified-green" />}
+                icon={<Camera className="h-3 w-3 text-verified-green" />}
                 title="Creators"
                 delay={0.2}
               />
               
               <UseCase 
-                icon={<Shield className="h-4 w-4 text-verified-green" />}
+                icon={<Shield className="h-3 w-3 text-verified-green" />}
                 title="Insurance"
                 delay={0.3}
               />
               
               <UseCase 
-                icon={<Scale className="h-4 w-4 text-verified-green" />}
+                icon={<Scale className="h-3 w-3 text-verified-green" />}
                 title="Legal"
                 delay={0.4}
               />
@@ -224,13 +221,13 @@ interface UseCaseProps {
 const UseCase: React.FC<UseCaseProps> = ({ icon, title, delay }) => {
   return (
     <motion.div 
-      className="glass-morphism rounded-xl overflow-hidden shadow-sm"
+      className="glass-morphism rounded-lg overflow-hidden shadow-sm"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.5 }}
     >
-      <div className="p-2 text-center">
-        <div className="bg-verified-green/10 p-1.5 rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-1">
+      <div className="p-1.5 text-center">
+        <div className="bg-verified-green/10 p-1 rounded-full w-6 h-6 flex items-center justify-center mx-auto mb-0.5">
           {icon}
         </div>
         <h3 className="font-bold text-verified-dark text-xs">{title}</h3>
