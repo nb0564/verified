@@ -57,91 +57,131 @@ const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
   if (animated) {
     return (
       <div className="relative">
-        {/* Acid trip pixel shimmer effect container */}
         <motion.div
-          className="absolute inset-0 w-full h-full"
-          style={{ 
-            backgroundImage: `radial-gradient(circle at 50% 50%, #8B5CF6 5%, #D946EF 25%, #F97316 50%, #0EA5E9 75%)`,
-            mixBlendMode: 'overlay',
-            filter: 'url(#noise)',
-            backgroundSize: '200% 200%',
-            opacity: 0,
-            imageRendering: 'pixelated'
-          }}
-          animate={{ 
-            backgroundPosition: ['0% 0%', '100% 100%', '0% 100%', '100% 0%', '0% 0%'],
-            opacity: [0, 0.3, 0.1, 0.5, 0],
-          }}
-          transition={{ 
-            duration: 10, 
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        />
-
-        {/* Main badge with pixel shimmer effect */}
-        <motion.div
-          initial={{ opacity: 0.5 }}
-          animate={{ 
-            opacity: [0.6, 1, 0.4, 0.9, 0.3, 0.8, 0.5, 1],
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-          }}
           className="relative z-10"
-          style={{ imageRendering: 'pixelated' }}
+          initial={{ opacity: 0.9 }}
+          animate={{ opacity: 1 }}
         >
           <BaseComponent />
+          
+          {/* SVG filter for pixel shimmering */}
+          <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+            <defs>
+              <filter id="pixel-shimmer" x="-50%" y="-50%" width="200%" height="200%">
+                <feTurbulence 
+                  type="fractalNoise" 
+                  baseFrequency="0.05" 
+                  numOctaves="3" 
+                  seed={Math.random() * 100}
+                  result="noise" 
+                />
+                <feDisplacementMap 
+                  in="SourceGraphic" 
+                  in2="noise" 
+                  scale="2" 
+                  xChannelSelector="R" 
+                  yChannelSelector="G"
+                />
+              </filter>
+
+              <filter id="pixel-noise">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" result="noise" />
+                <feColorMatrix type="matrix"
+                  values="0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0.15 0" />
+                <feComposite operator="in" in2="SourceGraphic" result="noisy-image" />
+                <feComposite in="SourceGraphic" in2="noisy-image" operator="arithmetic" k1="0.5" k2="0.5" k3="0" k4="0" />
+              </filter>
+            </defs>
+          </svg>
         </motion.div>
 
-        {/* Pixelated overlay for acid trip effect */}
-        <svg style={{ display: 'none' }}>
-          <filter id="noise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-            <feDisplacementMap in="SourceGraphic" scale="10" />
-          </filter>
-        </svg>
-
-        {/* Random pixel shimmer overlays */}
-        {Array.from({ length: 5 }).map((_, index) => (
-          <motion.div
-            key={index}
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            style={{ 
-              backgroundImage: 'radial-gradient(circle at 50% 50%, transparent 90%, rgba(255,255,255,0.8) 100%)',
-              mixBlendMode: 'screen',
-              filter: 'url(#pixelate)',
-              opacity: 0,
-            }}
-            animate={{ 
-              opacity: [0, 0.2, 0, 0.6, 0, 0.3, 0],
-              scale: [0.9, 1.1, 0.95, 1.05, 0.9],
-              x: [0, 5, -5, 3, -3, 0],
-              y: [0, -3, 3, -5, 5, 0],
-            }}
-            transition={{ 
-              duration: 3 + index * 1.5, 
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-              delay: index * 0.8,
-            }}
-          />
-        ))}
-
-        {/* Additional filter for pixelation */}
-        <svg style={{ display: 'none' }}>
-          <filter id="pixelate">
-            <feFlood x="4" y="4" height="2" width="2"/>
-            <feComposite width="10" height="10"/>
-            <feTile result="a"/>
-            <feComposite in="SourceGraphic" in2="a" operator="in"/>
-            <feMorphology operator="dilate" radius="1"/>
-          </filter>
-        </svg>
+        {/* Pixel shimmer overlays - contained within the badge */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <motion.div 
+              key={i}
+              className="absolute"
+              style={{
+                width: `${3 + Math.random() * 5}px`,
+                height: `${3 + Math.random() * 5}px`,
+                background: i % 2 === 0 ? '#FFCF00' : '#00A550',
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: 0,
+                mixBlendMode: 'color-dodge',
+                filter: 'blur(0.5px)',
+                imageRendering: 'pixelated'
+              }}
+              animate={{
+                opacity: [0, 0.8, 0],
+                scale: [0.5, 1.2, 0.8],
+              }}
+              transition={{
+                duration: 1 + Math.random() * 2,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+                delay: i * 0.3,
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Individual pixel shimmering effect - targeted on specific parts */}
+        <div 
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+          style={{ mixBlendMode: 'color-dodge' }}
+        >
+          {['#FFCF00', '#00A550', '#FFFFFF'].map((color, index) => (
+            <motion.div
+              key={index}
+              className="absolute inset-0 w-full h-full"
+              style={{
+                backgroundImage: `radial-gradient(
+                  circle at ${50 + (Math.random() * 20 - 10)}% ${50 + (Math.random() * 20 - 10)}%, 
+                  ${color} 1%, 
+                  transparent 15%
+                )`,
+                opacity: 0,
+                filter: 'url(#pixel-noise)',
+                imageRendering: 'pixelated'
+              }}
+              animate={{
+                opacity: [0, 0.4, 0],
+                x: [0, Math.random() * 4 - 2, 0],
+                y: [0, Math.random() * 4 - 2, 0],
+              }}
+              transition={{
+                duration: 1.5 + Math.random() * 2,
+                repeat: Infinity,
+                repeatType: "reverse",
+                delay: index * 0.5,
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Pixelated overlay - text specific shimmer */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 50% 70%, transparent 70%, rgba(255,207,0,0.3) 100%)',
+            mixBlendMode: 'overlay',
+            filter: 'url(#pixel-noise)',
+            opacity: 0,
+          }}
+          animate={{
+            opacity: [0, 0.3, 0.1, 0.4, 0],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            repeatType: "mirror",
+          }}
+        />
       </div>
     );
   }
