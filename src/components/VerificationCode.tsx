@@ -29,7 +29,7 @@ const VerificationCode: React.FC<VerificationCodeProps> = ({ code, className = '
     >
       <div className="relative px-6 py-5 bg-verified-dark border-[3px] border-verified-yellow rounded-sm shadow-[6px_6px_0px_0px_rgba(0,0,0,0.6)]" style={{ boxShadow: '6px 6px 0px 2px rgba(0,0,0,0.6), 8px 8px 0px 0px rgba(0,165,80,0.4)' }}>
         <div className="flex items-center gap-3">
-          <span className="text-verified-yellow font-mono font-bold tracking-wider text-2xl gta-header" style={{ textShadow: '3px 3px 0 rgba(0,0,0,0.8), 5px 5px 0 rgba(0,165,80,0.5)' }}>{code}</span>
+          <span className="text-verified-pink font-mono font-bold tracking-wider text-2xl gta-header" style={{ textShadow: '3px 3px 0 rgba(0,0,0,0.8), 5px 5px 0 rgba(0,165,80,0.5)', color: '#ff33cc' }}>{code}</span>
           <button 
             onClick={copyToClipboard}
             className={cn(
@@ -41,9 +41,6 @@ const VerificationCode: React.FC<VerificationCodeProps> = ({ code, className = '
           >
             {copied ? <CheckCircle size={20} /> : <Copy size={20} />}
           </button>
-        </div>
-        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-verified-green text-verified-yellow text-xs px-3 py-1 rounded-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,0.6)] font-bold uppercase tracking-widest" style={{ fontFamily: "'Staatliches', sans-serif", textShadow: '1px 1px 0 rgba(0,0,0,0.8)' }}>
-          Verification Code
         </div>
       </div>
     </motion.div>

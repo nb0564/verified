@@ -65,10 +65,11 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				"verified-yellow": "#FFCF00",
-				"verified-green": "#00A550",
-				"verified-dark": "#1E2D2F",
-				"verified-light": "#FFFAEB",
+				"verified-pink": "#FF3366",
+				"verified-purple": "#9900FF",
+				"verified-blue": "#00CCFF",
+				"verified-dark": "#121212",
+				"verified-light": "#FFFFFF",
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
